@@ -2,30 +2,30 @@
 
 ## 1. Product summary
 
-ChooseTheFuture is a public place where people decide which open-source projects deserve more attention and invite their own AI coding agents to help those projects move forward.
+ChooseTheFuture is a public place where people decide which open-source projects deserve more attention. Its connector lets users opt their coding-agent capacity into maintainer-approved tasks.
 
 The site connects two groups:
 
 - **Supporters** who care about what gets built, even if they do not code.
-- **Agent contributors** who can use a coding agent to make a focused contribution in their own workspace.
+- **Agent contributors** who choose projects for the ChooseTheFuture Connector and contribute agent capacity using their own model access.
 
-ChooseTheFuture is a directory, coordination signal, and prompt guide. It does not pool tokens, run agents, grant repository access, or promise that a project will accept a contribution. Each project keeps its own roadmap and review process.
+ChooseTheFuture combines a public project directory with a task coordination service and a user-installed connector. The connector manages a local OpenHands runtime and is intended to interoperate with alternative clients through MCP and other adapters. Users configure their own model access; ChooseTheFuture does not pool credentials or run users’ agents on its servers. Maintainers decide which tasks are eligible and review submitted contributions.
 
 ## 2. Product goals
 
 1. Make it easy for a non-technical person to discover projects and express what they want to see built.
-2. Turn that interest into a clear next step for people with spare coding-agent capacity.
+2. Turn that interest into a clear way for users to contribute coding-agent capacity to maintainer-approved work.
 3. Direct attention toward current, project-relevant work rather than vague requests to “build the whole thing.”
-4. Help projects receive contributions through their existing processes, without requiring them to hand control to ChooseTheFuture.
+4. Help projects receive reviewable submissions without requiring them to hand control of their repositories to ChooseTheFuture.
 5. Show what happened after people expressed interest: whether goals are active, paused, completed, or awaiting project input.
 
-### Not goals for the first release
+### Boundaries and non-goals
 
-- Hosting or dispatching coding agents.
-- Collecting, pooling, transferring, or measuring users’ model tokens or subscriptions.
+- Hosting users’ agent runs or pooling model credentials and subscriptions.
 - Replacing GitHub, project issue trackers, or maintainer review.
 - Automatically merging code or claiming that votes obligate a project to follow a roadmap.
 - Ranking software quality based on vote counts or raw pull-request volume.
+- Requiring contributors to manually drive or approve each coding task after opting in; maintainer review remains required for submissions.
 
 ## 3. Audiences and needs
 
@@ -37,23 +37,24 @@ May not know how to code or what a repository issue means. Wants to understand t
 
 ### Agent contributor
 
-Uses a coding agent and wants to spend a session on work that is useful to a real project. Needs current project guidance, a bounded task, and a prompt that asks the agent to inspect the repository before changing anything.
+Installs the ChooseTheFuture Connector, chooses which projects it may work on, and contributes agent capacity using their own model access. They need understandable setup, clear project/task controls, and confidence that submissions go to maintainers for review.
 
-**Needs:** task status, links to source issues and contribution rules, a copyable prompt, and an explicit reminder to review the result personally.
+**Needs:** clear consent and project allowlisting, simple setup, visible activity and controls, and a connector that manages the agent runtime without requiring them to operate coding sessions manually.
 
 ### Project maintainer
 
 Wants interested people to find the project, but needs contributions to fit project priorities and remain reviewable.
 
-**Needs:** control over the project brief, approved goals and tasks, a way to pause or correct stale guidance, and no implication that community votes override maintainer decisions.
+**Needs:** control over project enrollment and eligible tasks, a way to pause or correct stale guidance, and assurance that submissions remain subject to their review and merge decisions.
 
 ## 4. Information architecture
 
 Primary navigation:
 
 - **Explore projects** — the public directory and filters.
-- **How it works** — explains choosing, prompting, reviewing, and contributing in plain language.
+- **How it works** — explains choosing, opting in agent capacity, and maintainer review in plain language.
 - **For project maintainers** — explains how to add a project and keep its guidance current.
+- **Connector** — explains installation, project selection, model access, and contribution controls.
 - **About** — the purpose, boundaries, and principles of ChooseTheFuture.
 
 Core pages:
@@ -61,9 +62,10 @@ Core pages:
 1. **Home** — clear explanation and routes into the project directory.
 2. **Project directory** — searchable and filterable project cards.
 3. **Project page** — project overview, community goals, current work, status, and participation actions.
-4. **Goal or task detail** — a focused outcome, acceptance context, source links, and generated agent prompt.
+4. **Goal or task detail** — a focused outcome, acceptance context, source links, and task availability.
 5. **Submit a project** — a lightweight nomination form; publication follows a review step.
-6. **Maintainer settings** — later phase; update a brief, goals, task status, and pause state.
+6. **Maintainer settings** — update a brief, approved tasks, eligibility, and pause state.
+7. **Connector setup and settings** — install/manage the local runtime, select projects, and control agent activity.
 
 ## 5. Key user flows
 
@@ -76,15 +78,14 @@ Core pages:
 5. Choose **Support this goal** or **Follow project**.
 6. See confirmation and an optional share link. Support means interest, not a binding promise to contribute time or tokens.
 
-### B. Use a coding agent
+### B. Contribute agent capacity
 
-1. Open a project goal or current task.
-2. Check its status, last update, repository link, and project contribution guidance.
-3. Select **Get a prompt for my coding agent**.
-4. Review the prompt before copying it. It should name the goal/task and link to project-owned instructions.
-5. Paste it into the contributor’s own coding agent and workspace.
-6. Review the generated changes, then follow the project’s normal issue or pull-request process.
-7. Optionally return to ChooseTheFuture and record an outcome or link to the resulting pull request.
+1. Install the ChooseTheFuture Connector, which manages the local OpenHands runtime.
+2. Configure the user’s model access and explicitly choose which enrolled projects the connector may serve.
+3. The coordinator offers eligible tasks from those projects; the connector claims a task with a temporary lease to prevent duplicate assignments.
+4. The connector runs the agent in a separate task workspace and automatically submits the result, for example as a pull request, for maintainer review.
+5. The user can monitor activity, change limits, pause the connector, or revoke project access. They contribute agent capacity rather than manually driving each task.
+6. Alternative coding clients can connect through MCP or a supported adapter where available.
 
 ### C. Add or maintain a project
 
@@ -103,10 +104,10 @@ Core pages:
 Recommended content order:
 
 1. Headline about choosing what gets built.
-2. Short explanation that people can support projects and invite their own coding agents.
+2. Short explanation that people can support projects and opt agent capacity into maintainer-approved work.
 3. Primary action: **Explore projects**.
 4. Secondary action: **How it works**.
-5. Three short steps: choose, invite an agent, review and contribute.
+5. Three short steps: choose, opt in an agent, and let maintainers review submissions.
 6. A small set of current community-backed projects once real projects are available.
 7. A project-maintainer invitation.
 
@@ -134,29 +135,22 @@ Recommended sections:
 3. **Community support** — supporters and active goal interest, with a clear explanation that popularity is not a commitment from maintainers.
 4. **What the project is working toward** — goals with status and project ownership.
 5. **Work to pick up** — small current tasks, if supplied or approved by maintainers.
-6. **How to help** — support, share, open the issue, or copy an agent prompt.
+6. **How to help** — support or share the project, or opt it into the connector.
 7. **Project guidance** — contribution rules, areas to avoid, and last-reviewed date.
 
-### Goal/task page and prompt panel
+### Goal/task page and task availability
 
-Show the goal in outcome terms, its current status, acceptance context, related issue/PR links, maintainer notes, and last update. A prompt panel should:
-
-- State that it is generated by ChooseTheFuture and is not a maintainer instruction unless explicitly marked as maintainer-provided.
-- Link to the project’s repository and contribution guidance.
-- Ask the agent to inspect the current code and project instructions first.
-- Ask it to check whether the task is still open and whether duplicate work is visible.
-- Bound the change to the selected goal and ask for a concise summary of changes, checks, and limitations.
-- Tell the person to review all changes and submit them through the project’s normal process.
-- Never ask for credentials, token transfer, direct pushes, or automatic merges.
+Show the goal in outcome terms, its current status, acceptance context, related issue/PR links, maintainer notes, last update, and whether maintainer-approved tasks are available to connector users. Task eligibility and temporary claim status should be clear. The connector should provide the agent with the maintainer-approved task, acceptance context, and project instructions; acquire a temporary claim before running; keep the work bounded; and attach a concise summary of changes, checks, and limitations to the submission. It submits work for maintainer review and never merges automatically. Model credentials remain on the user’s machine and out of task payloads and submissions.
 
 ## 7. Voting and participation semantics
 
-- A vote means **“I want this project or goal to receive attention.”** It does not mean the voter is committing tokens, agent time, funding, or labor.
+- A vote means **“I want this project or goal to receive attention.”** It does not itself enroll the voter’s agent or commit them to agent capacity, funding, or labor.
 - Let users change or remove their support.
 - Show support counts as a signal, not as a quality score or binding roadmap.
-- Separate support from contribution outcomes. Track submitted or merged work only when linked or confirmed; do not infer it from copied prompts.
+- Separate support from contribution outcomes. Track task claims, submissions, and accepted work as distinct events.
 - Prefer a sign-in method that does not require a GitHub account, since many supporters are not developers. The exact authentication and abuse-control approach should be validated in the pilot.
-- Consider an optional “I may try an agent session” pledge separately from votes; keep it non-binding and private by default.
+- Connector enrollment is a separate, explicit choice to contribute agent capacity and model usage. Users select allowed projects and can pause or revoke access.
+- Do not imply that voting shares model credentials or automatically enrolls a user’s agent.
 
 ## 8. Content model
 
@@ -175,13 +169,14 @@ Show the goal in outcome terms, its current status, acceptance context, related 
 - Why it matters, desired result, and acceptance context.
 - Status: proposed, active, paused, blocked, or complete.
 - Project/maintainer source links and last-updated date.
-- Related tasks and prompt context.
+- Related tasks and agent instructions.
 
 ### Task
 
 - Short bounded description and source issue link.
 - Labels for skills or areas, if useful.
-- Status: available, in progress, blocked, or complete.
+- Maintainer eligibility: draft, ready for agent work, paused, or closed.
+- Claim/submission status: available, claimed, running, submitted, expired, failed, or complete.
 - Maintainer notes, exclusions, and acceptance criteria.
 
 ## 9. Trust, quality, and moderation
@@ -189,8 +184,13 @@ Show the goal in outcome terms, its current status, acceptance context, related 
 - Clearly distinguish maintainer-confirmed information from community-submitted information.
 - Give every brief and task a visible last-reviewed date.
 - Let maintainers pause or remove a goal from the active contribution list.
+- Require explicit maintainer enrollment and task eligibility before connector users can claim work.
+- Make task claims atomic and expiring so simultaneous connectors do not start the same task.
+- Keep each task in its own workspace; keep model credentials in local connector/runtime configuration, not in task content or the repository workspace.
+- Submit changes as pull requests or another project-approved submission; do not directly edit a maintainer’s working branch or merge automatically.
+- Make connector project allowlists and pause/revoke controls visible to users.
 - Link back to source issues, repositories, and project-owned guidance.
-- Treat generated prompts as navigational help, not authority or endorsement.
+- Distinguish ChooseTheFuture task coordination from maintainer-provided instructions and project policy.
 - Provide a simple way to report stale, incorrect, unsafe, or unwanted project guidance.
 - Do not reward raw pull-request volume. Show useful outcomes with context and maintainer confirmation where possible.
 - Keep user-generated submissions moderated before public listing to reduce spam and misleading project claims.
@@ -205,7 +205,7 @@ The experience should feel welcoming, hopeful, and credible—not like a develop
 - Use one primary action per view and readable body text.
 - Make all actions work with keyboard, visible focus, sufficient contrast, and screen readers.
 - Support reduced motion and small screens.
-- Avoid token imagery, compute meters, developer-only jargon, and gamified contribution leaderboards.
+- Avoid cryptocurrency imagery, developer-only jargon, and gamified contribution leaderboards. Explain model usage plainly and show the user’s connector controls.
 
 ## 11. MVP scope and sequence
 
@@ -218,21 +218,24 @@ The experience should feel welcoming, hopeful, and credible—not like a develop
 - External links to project issues, contribution rules, and repositories.
 - Responsive static site on GitHub Pages.
 
-### Phase 2: Support and agent prompts
+### Phase 2: Support and task coordination
 
 - Lightweight supporter identity and changeable project/goal votes.
-- Goal and task pages with copyable, previewable prompts.
-- Optional links for reporting contribution attempts and outcomes.
+- Goal and task pages with maintainer-controlled eligibility.
+- Coordinator service for task discovery, atomic claims, lease expiry, and submission status. Host separately from the static GitHub Pages site as needed.
+- Connector prototype that manages a local OpenHands runtime, uses locally configured model access, and submits results for maintainer review.
 - Basic abuse controls and moderation queue.
 
-### Phase 3: Maintainer tools and sustainable updates
+### Phase 3: Connector usability and client interoperability
 
 - Maintainer claim/verification and self-service project updates.
-- GitHub issue syncing where maintainers want it.
+- Guided Windows and macOS installer that manages the local runtime with minimal setup; decide the sandbox approach during feasibility work.
+- MCP interface and adapters for alternative coding-agent clients.
+- Maintainer task enrollment and status integration with GitHub Issues and Projects where useful.
 - Stale-task reminders and project update notifications.
 - Community goal proposals with clear moderation and maintainer response states.
 
-Do not build agent execution, token pooling, account-level usage measurement, automatic merging, or elaborate reputation systems unless later evidence shows a clear need.
+Do not centralize user model credentials or agent execution, automatically merge contributions, or build elaborate reputation systems unless later evidence shows a clear need.
 
 ## 12. MVP success measures
 
@@ -240,16 +243,19 @@ Measure whether the site creates a useful loop, not just traffic:
 
 - Supporters can explain what the project does and what their vote means.
 - Visitors can find a current, project-approved next step.
-- Agent users copy a prompt, review the work, and submit focused contributions.
+- Users can install the connector, opt in selected projects, and contribute agent capacity without manually driving each coding task.
+- Maintainers receive scoped submissions they can review and accept or decline.
 - Maintainers confirm the guidance remains current and find the resulting contributions manageable.
 - The share of projects with current briefs and maintainer confirmation remains visible.
 
-Keep interest counts separate from agent sessions and accepted contributions; each measures a different part of the loop.
+Keep interest counts separate from task claims, submitted work, and accepted contributions; each measures a different part of the loop.
 
 ## 13. Decisions to validate in the pilot
 
 - Which identity method makes voting easy for non-technical supporters while limiting duplicate votes?
 - Should project owners approve every goal before it appears, or can community-proposed goals be shown separately?
 - What is the lightest way to keep task status fresh without creating work for maintainers?
-- Which outcome signals can be collected reliably without requiring access to a contributor’s agent account?
+- What task and submission status can the coordinator collect while keeping model credentials and agent workspaces local?
+- Which client integrations beyond OpenHands should the MCP interface and adapters support?
+- Which Windows/macOS runtime and sandbox approach can meet the low-friction installation goal?
 - How should the directory balance popular projects with new or under-discovered projects?

@@ -1,173 +1,173 @@
 # ChooseTheFuture Project Plan
 
-This is the build roadmap for ChooseTheFuture as a product and community. It describes the order of work, what each stage should deliver, and what evidence should justify moving on. It is separate from [`SITEPLAN.md`](SITEPLAN.md), which describes the website’s pages and user interactions.
+This is the product and delivery roadmap. [`SITEPLAN.md`](SITEPLAN.md) describes the site experience and its information architecture.
 
 ## Project objective
 
-Build a public place where people—especially people who do not code—can choose which open-source projects deserve attention, then help interested coding-agent users direct their own agent sessions toward that work.
+Help people choose which open-source projects deserve attention, then let users contribute coding-agent capacity to tasks those projects’ maintainers have approved.
 
-ChooseTheFuture coordinates interest and points contributors toward projects. People use their own accounts and workspaces. Each project keeps control of its repository, roadmap, contribution process, and review decisions.
+ChooseTheFuture will include a public directory, a hosted task-coordination service, and the **ChooseTheFuture Connector**. The connector manages a local OpenHands runtime, uses the user’s configured model access on their machine, and automatically submits completed work for maintainer review. The connector should interoperate with alternative clients through MCP and other adapters.
+
+GitHub remains the source of project issues and pull requests where maintainers choose to use it. Maintainers control project participation, task eligibility, and acceptance of submissions. Users choose which projects their connector may serve and contribute the associated agent capacity and model usage.
 
 ## Product principles
 
-- **People choose the destination.** Votes and follows express interest; they do not transfer tokens, promise labor, or bind maintainers.
-- **Agents stay with their users.** ChooseTheFuture does not run agents or collect agent credentials or usage budgets.
-- **Projects retain authority.** Project maintainers set priorities, approve contribution guidance, and review contributions.
-- **Start with useful direction.** A clear project brief and a focused next step matter more than elaborate orchestration.
-- **Measure separate outcomes separately.** Interest, agent sessions, submitted work, and accepted contributions are different signals.
+- **People choose the destination.** Votes express interest; connector enrollment is a separate, explicit choice to contribute agent capacity.
+- **Agent execution stays with the user.** The connector manages the local runtime; ChooseTheFuture does not run users’ agents or collect model credentials on its servers.
+- **Projects retain authority.** Maintainers enroll projects, approve tasks for agent work, and review/accept submissions.
+- **Coordination is a ChooseTheFuture responsibility.** A service tracks eligibility, issues atomic task claims, expires abandoned claims, and records submission status. OpenHands is an execution runtime, not the task marketplace or queue owner.
+- **Interoperability is a product requirement.** The ChooseTheFuture Connector is client-neutral in identity; OpenHands is the initial runtime, with MCP and adapters supporting other clients over time.
+- **Measure separate outcomes separately.** Interest, task claims, submitted work, and accepted contributions are different signals.
 
-## Milestone 0 — Establish the pilot and operating rules
+## Milestone 0 — Define the pilot contract
 
-**Purpose:** make the first community experiment concrete before building a complex platform.
+**Purpose:** make project participation, user consent, and submission behavior explicit before implementation.
 
 ### Work
 
-- Define how projects enter the pilot and who can confirm project information.
-- Select a small mix of open-source projects that welcome outside contributions and have active maintainers. Include ambitious examples people can rally around, while keeping the first test small enough to support manually.
-- For each pilot project, prepare a plain-language brief, a few community goals, contribution links, current status, and any areas where agent contributions are unwelcome.
-- Define what a vote means, how votes can be changed, and how stale or disputed project information is handled.
-- Draft the first project-specific coding-agent prompt and ask maintainers to review it.
-- Write a short privacy statement: ChooseTheFuture does not receive users’ tokens, connect to their agents, or see their work unless they choose to link a public contribution.
+- Select a small pilot cohort of open-source projects with maintainers willing to approve bounded tasks for agent work.
+- Define how maintainers enroll repositories and designate issues/tasks as eligible, paused, or closed.
+- Define how users choose approved projects, configure model access, set run limits, pause, and revoke connector access.
+- Define a submission path, such as a pull request or patch submission, that leaves review and merge decisions to maintainers.
+- Specify what task and run metadata the coordinator stores; keep model credentials and user workspaces local.
+- Validate the Windows and macOS installation and execution options, including the sandbox boundary and runtime update strategy.
 
 ### Deliverables
 
-- Pilot selection criteria and a project onboarding checklist.
-- Maintainer-approved project briefs and goal records.
-- A reviewed prompt template and contribution guidance.
-- A lightweight moderation and correction process.
+- Project onboarding and maintainer task-readiness checklist.
+- User consent, project allowlist, and connector-control requirements.
+- End-to-end task, claim-expiry, and submission flow.
+- Installer/runtime feasibility findings for Windows and macOS.
 
 ### Exit check
 
-Pilot maintainers agree that the displayed goals and prompts are accurate, and a non-technical reader can explain what supporting a project does and does not commit them to.
+Pilot maintainers agree how tasks become eligible and how submissions arrive. Users can understand what model usage they are contributing, which projects are enabled, and how to stop the connector.
 
-## Milestone 1 — Run a concierge pilot
+## Milestone 1 — Launch the public directory and enroll projects
 
-**Purpose:** test the full idea with people and projects before automating it.
+**Purpose:** prove people can find projects and maintainers can describe appropriate work.
 
 ### Work
 
-- Publish the current concept landing page and a small manually curated project directory.
-- Let supporters register interest in a project or goal using the simplest practical mechanism.
-- Provide a copyable prompt for one maintainer-approved task or goal per project.
-- Invite technical contributors to use their own coding agents, review the output, and submit work through the projects’ normal processes.
-- Follow up with contributors and maintainers to record what happened. Do not infer an agent session from a prompt copy.
+- Publish the public project directory and plain-language project pages.
+- Add project nomination and maintainer confirmation processes.
+- Add maintainer-approved goals and bounded tasks, with source issue links, acceptance context, exclusions, and last-reviewed dates.
+- Let people support projects and goals independently from contributing agent capacity.
+- Keep task enrollment under maintainer control; community interest alone never makes a task eligible.
 
 ### Deliverables
 
-- Public pilot directory with clear maintainer-confirmation and last-updated labels.
-- A simple interest signal for each project/goal.
-- Copyable agent prompts and direct links to repositories, issues, and contribution rules.
-- A short pilot report describing participation, submitted work, maintainer feedback, and problems encountered.
+- Responsive public directory hosted on GitHub Pages.
+- Curated pilot projects with maintainer-confirmed guidance and tasks.
+- Separate interest actions and connector enrollment messaging.
+- Pilot feedback on task quality and project onboarding.
 
 ### Exit check
 
-People who are not developers can find and support a project without needing to understand GitHub. Agent users can identify a useful next step, and at least some maintainers find the resulting contributions reviewable and welcome. If that loop does not happen, revise the pitch or project guidance before expanding the software.
+Nontechnical visitors can understand what projects do and what support means. Maintainers can identify bounded tasks suitable for agent execution.
 
-## Milestone 2 — Build the first functional MVP
+## Milestone 2 — Build the coordinator and connector prototype
 
-**Purpose:** replace the manual directory and interest tracking with a dependable public product.
+**Purpose:** prove that approved work can be claimed, executed locally, and submitted without duplicate task assignments.
 
-### Supporter features
+### Coordinator service
 
-- Browse and search a directory of projects.
-- Read plain-language project summaries, goals, status, maintainer participation, and last-reviewed dates.
-- Vote for or follow a project or goal; allow users to change or remove their support.
-- View what a vote means and does not mean before taking the action.
-- Share projects and goals without requiring recipients to sign in.
+- Host the coordination API and database separately from the static GitHub Pages site as needed.
+- Ingest or retrieve maintainer-approved task eligibility from supported GitHub/project integrations.
+- Provide task discovery filtered by the user’s project allowlist.
+- Atomically issue temporary task leases; expire or release claims after failure, cancellation, or timeout.
+- Track task/run status and links to submissions without storing model credentials or full user workspaces.
+- Apply per-project and global safety limits and provide maintainer pause controls.
 
-### Agent-contributor features
+### ChooseTheFuture Connector
 
-- Find a current goal or task with project-approved contribution guidance.
-- Preview and copy a prompt that links to the repository and instructions.
-- See a reminder to inspect current project guidance, check for duplicate work, make a focused change, review it personally, and use the normal contribution process.
-- Optionally link to a resulting issue or pull request; do not request agent credentials or token details.
-
-### Project data and moderation
-
-- Store project, goal, and task records with status, source links, maintainer-confirmation state, and last-reviewed date.
-- Provide a way to nominate a project and correct stale or inaccurate information.
-- Moderate new public listings before publication.
-- Let maintainers pause goals or mark them blocked or complete.
+- Provide a user-facing installer/desktop experience that installs and manages the local OpenHands runtime.
+- Keep configured model access on the user’s machine and out of the coordinator service.
+- Let users select approved projects and set visible concurrency, usage, and pause/revoke controls.
+- Claim eligible tasks, prepare a separate workspace per task, run OpenHands, and submit results automatically for maintainer review.
+- Return clear run summaries and submission links; do not merge automatically or require users to manually review each result.
+- Keep the connector identity client-neutral and expose the task workflow through a stable API/MCP interface.
 
 ### Deliverables
 
-- Responsive project directory and project pages.
-- Lightweight supporter identity and voting, using an approach that works for non-technical people.
-- Project and goal editing workflow for the initial maintainers or editors.
-- Prompt generation based on project-owned information.
-- Basic privacy, moderation, accessibility, and correction guidance.
+- Hosted coordinator prototype with atomic leases and expiry.
+- Connector proof of concept using a local OpenHands runtime and one pilot project.
+- Submission path and maintainer review feedback.
+- Documented threat boundaries and data handling.
 
 ### Exit check
 
-A supporter can discover and support a goal; an agent user can get current guidance and submit a focused contribution; maintainers can correct or pause guidance; and the site reports interest separately from contribution outcomes.
+Two connector instances cannot claim the same task at once. A user can opt into a project, run a bounded task locally, and have a submission reach the maintainer without exposing model credentials to ChooseTheFuture.
 
-## Milestone 3 — Make project participation sustainable
+## Milestone 3 — Make installation and interoperability practical
 
-**Purpose:** reduce manual upkeep without shifting control away from project owners.
+**Purpose:** make the connector approachable to nontechnical users and useful across agent clients.
 
 ### Work
 
-- Add maintainer claim and confirmation flows.
-- Let maintainers update briefs, goals, task status, exclusions, and review dates.
-- Add optional GitHub issue links or syncing only where maintainers want it; keep project-owned issue trackers authoritative.
-- Add stale-guidance reminders and a visible “last checked” state.
-- Offer notifications for project status changes and goals a supporter follows.
+- Build guided Windows and macOS installers that manage runtime setup, configuration, updates, and troubleshooting.
+- Validate a safe task-workspace boundary that does not expose unrelated personal files or credentials to agents.
+- Implement the ChooseTheFuture MCP interface for compatible clients.
+- Add adapters for useful clients that do not support the required MCP workflow.
+- Integrate with GitHub Issues and Projects where it reduces maintainer overhead; keep issue and merge authority with project maintainers.
+- Add clear activity history, failure recovery, claim renewal/expiry, pause, and uninstall/revoke behavior.
 
 ### Exit check
 
-Maintainers can keep project information current with low effort, and stale or paused goals are not presented as ready work.
+A nontechnical user can install the connector, choose projects, configure model access, and understand what it is doing. Maintainers can pause eligibility and review clearly attributed submissions.
 
-## Milestone 4 — Grow the community carefully
+## Milestone 4 — Expand carefully
 
-**Purpose:** increase participation while maintaining trust and contribution quality.
+**Purpose:** increase useful participation while maintaining project trust and contribution quality.
 
 ### Work
 
-- Invite additional projects through community nominations and maintainer referrals.
-- Help supporters share goals and explain the idea in accessible language.
-- Improve discovery so new or under-supported projects can be found, not only those with the largest existing audiences.
-- Publish transparent aggregate outcomes: interest, linked contribution attempts, submitted pull requests, and accepted work where verifiable.
-- Review abuse, duplicate-vote, project-staleness, and low-quality-contribution patterns before adding more automation.
+- Add projects through community nominations and maintainer referrals.
+- Expand supported MCP clients and task-management integrations based on pilot demand.
+- Publish aggregate outcomes: community interest, tasks claimed, submissions opened, and work accepted where verifiable.
+- Review failure, duplicate-work, abuse, stale-task, and low-quality submission patterns before scaling concurrency.
 
 ### Exit check
 
-Growth brings more maintained project pages and useful contributions, rather than only more votes, copied prompts, or low-quality pull requests.
+Growth brings more maintained project information and useful submissions, not only more votes or unreviewed agent activity.
 
 ## Product measures
 
-Track each stage of the loop independently:
+Track each stage independently:
 
-1. **Discovery:** project page visits and shares.
+1. **Discovery:** project visits and shares.
 2. **Interest:** votes and follows, including changes and removals.
-3. **Direction:** prompt previews and copies, without treating a copy as completed work.
-4. **Contribution:** user-linked issues or pull requests.
-5. **Outcome:** merged or otherwise accepted work when confirmed by project activity or maintainers.
-6. **Project health:** maintainer participation, brief freshness, paused/stale goals, and maintainer feedback.
+3. **Enrollment:** users who install the connector and select projects.
+4. **Capacity use:** task claims, local runs, failures, and model usage where users choose to report it.
+5. **Submission:** pull requests or patches created from agent runs.
+6. **Outcome:** submissions accepted or merged when confirmed by project activity or maintainers.
+7. **Project health:** maintainer participation, task freshness, paused/stale projects, and maintainer feedback.
 
-Do not optimize for raw vote totals, prompt copies, or pull-request volume alone.
+Do not optimize for raw vote totals, task volume, or pull-request volume alone.
 
 ## Dependencies and decisions
 
-Resolve these through the pilot where possible:
-
-- Which project categories and goals attract supporters who will also stay engaged?
-- What low-friction identity method can support changeable votes without requiring a GitHub account?
-- How often must maintainers reconfirm project briefs and tasks?
-- Which contribution outcomes can be tracked reliably without connecting to a user’s coding agent?
-- What moderation capacity is available for nominations and corrections?
-- What hosting and data services are needed once voting and editing move beyond the static GitHub Pages site?
+- Which identity and authorization flow supports both public browsing and explicit connector project allowlists?
+- How will maintainers enroll repositories and approve tasks without extensive setup?
+- Which separate hosting and database services should operate the coordinator?
+- What GitHub integration should enroll issues and receive submissions while preserving maintainer control?
+- Which Windows/macOS runtime packaging and isolation approach can meet low-friction installation goals?
+- What MCP tools and client adapters are needed for useful cross-client task execution?
+- What task metadata and outcomes can be tracked without collecting model credentials or unnecessary workspace data?
+- What operating budget and support capacity are needed for the coordinator and installer updates?
 
 ## Main risks and responses
 
 | Risk | Response |
 |---|---|
-| Popularity is mistaken for a binding roadmap | Label support as interest and keep project decisions with maintainers. |
-| Many agents produce duplicate or unwanted changes | Use current, scoped tasks; ask contributors to check status and existing work; make maintainer opt-in visible. |
-| Project information becomes stale | Show last-reviewed dates, allow pausing, and add maintainer reminders before automated syncing. |
-| Non-technical supporters feel excluded | Keep browsing and voting language plain; make technical details optional and progressive. |
-| The site rewards quantity over quality | Track contribution outcomes separately and avoid PR-volume leaderboards. |
-| Users assume tokens or agent accounts are being pooled | State clearly that people use their own agent accounts and environments. |
+| Votes are mistaken for a binding roadmap or agent enrollment | Explain that support, maintainer task approval, and connector enrollment are separate actions. |
+| Multiple connectors start the same or stale task | Use coordinator-owned atomic claims with expiry, plus maintainer-controlled eligibility. |
+| Agent execution exposes unrelated local files or credentials | Use per-task workspaces, a clear sandbox boundary, and local credential handling; validate the design before broad release. |
+| Users do not understand model usage or automatic submissions | Show project allowlists, activity, limits, pause/revoke controls, and the fact that maintainers review submissions. |
+| Coordinator outages strand tasks or leave claims stuck | Use expiring leases, idempotent status updates, retries, and a maintainer pause mechanism. |
+| More agent submissions overwhelm maintainers | Start with low concurrency, bounded tasks, maintainer opt-in, and the ability to pause enrollment. |
+| Users assume model tokens or credentials are pooled | Keep model access local; state that users contribute their own agent capacity and model usage. |
 
 ## Current state
 
-The repository has a concept landing page, a GitHub Pages workflow, a project README, and a detailed site blueprint. The project directory, voting, maintainer tools, prompt generation, and contribution tracking are not yet implemented. The next product step is to prepare and run the concierge pilot, not to build an agent execution platform.
+The repository has a concept landing page, GitHub Pages deployment, README, and product/site plans. The project directory, voting, maintainer task enrollment, coordinator service, and connector are not implemented. The agreed direction is a ChooseTheFuture Connector that manages a local OpenHands runtime, with model access configured locally and automatic submissions for maintainer review. The coordinator will manage task eligibility and temporary claims and may be hosted separately from GitHub Pages. Windows/macOS installer design, sandboxing, and MCP/client interoperability remain to be validated.
