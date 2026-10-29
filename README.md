@@ -27,3 +27,5 @@ This is an early project. The repository currently contains a concept landing pa
 ## Development
 
 The static site lives in [`site/`](site/). GitHub Actions deploys that folder to GitHub Pages when changes are pushed to `main`. The task coordinator, if built, will be a separate service rather than part of the static Pages site.
+
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for system boundaries and open implementation decisions. [`AGENTS.md`](AGENTS.md) contains repository guidance for coding agents and parallel work.
