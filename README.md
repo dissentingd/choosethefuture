@@ -13,11 +13,8 @@ ChooseTheFuture helps people decide where to contribute. Contributors work in th
 
 ## Project status
 
-Early concept and planning. The initial site, hosting, and contribution workflows are not yet implemented.
+Early concept. The first release is a clear project directory where supporters can discover projects, express interest, and get a useful starting prompt for their coding agent.
 
-## Planned first steps
+## Development
 
-- Define the smallest useful project directory and project page.
-- Pilot with a few open-source projects and manually curated goals.
-- Add clear voting, task status, and copyable agent prompts.
-- Later, publish with GitHub Actions and GitHub Pages after DNS is configured.
+The initial site is a static page in `site/`. GitHub Actions deploys it to GitHub Pages after changes are pushed to `main`.

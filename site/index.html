@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f2">
+  <meta name="description" content="Choose the open-source projects you want to see built. Point your coding agent toward work that matters to you.">
+  <title>ChooseTheFuture — Choose what we build together</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17251f;
+      --muted: #54645c;
+      --green: #245943;
+      --lime: #d9ef9b;
+      --paper: #f5f7f2;
+      --white: #fff;
+      --line: #dce4db;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.55; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    header { display: flex; align-items: center; justify-content: space-between; padding-block: 25px; }
+    .brand { display: flex; gap: 11px; align-items: center; font-weight: 750; letter-spacing: -.035em; text-decoration: none; }
+    .mark { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 50%; background: var(--green); color: var(--lime); font-size: 17px; }
+    nav { display: flex; align-items: center; gap: 27px; font-size: 14px; color: var(--muted); }
+    nav a { text-decoration: none; }
+    nav a:hover { color: var(--green); }
+    .nav-cta, .button { display: inline-flex; justify-content: center; align-items: center; gap: 9px; padding: 12px 18px; border: 1px solid var(--green); border-radius: 999px; color: var(--white); background: var(--green); font-weight: 650; text-decoration: none; transition: transform .15s ease, background .15s ease; }
+    .nav-cta:hover, .button:hover { background: #183f2f; transform: translateY(-1px); }
+    .button.secondary { color: var(--green); background: transparent; }
+    .button.secondary:hover { background: #e9eee6; }
+    .hero { position: relative; overflow: hidden; padding: clamp(62px, 10vw, 118px) 0 76px; }
+    .hero::after { content: ""; position: absolute; z-index: 0; width: 420px; height: 420px; right: -145px; top: 35px; border: 1px solid #d4e1cf; border-radius: 50%; box-shadow: 0 0 0 42px var(--paper), 0 0 0 43px #d4e1cf, 0 0 0 88px var(--paper), 0 0 0 89px #d4e1cf; opacity: .75; }
+    .hero-content { position: relative; z-index: 1; max-width: 720px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-size: 12px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 22px; height: 2px; background: #8da95e; }
+    h1 { max-width: 760px; margin: 20px 0 20px; font-family: var(--serif); font-size: clamp(48px, 7.6vw, 88px); font-weight: 500; line-height: .99; letter-spacing: -.055em; }
+    h1 em { color: var(--green); font-weight: 500; }
+    .intro { max-width: 590px; margin: 0; color: var(--muted); font-size: clamp(17px, 2.1vw, 20px); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .note { margin-top: 17px; color: #6c7b73; font-size: 13px; }
+    .signal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 0 auto 86px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.64); }
+    .signal div { padding: 23px 26px; }
+    .signal div + div { border-left: 1px solid var(--line); }
+    .signal strong { display: block; font-family: var(--serif); font-size: 21px; font-weight: 500; }
+    .signal span { color: var(--muted); font-size: 13px; }
+    section { padding: 0 0 95px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 27px; }
+    h2 { max-width: 570px; margin: 12px 0 0; font-family: var(--serif); font-size: clamp(34px, 4.5vw, 52px); font-weight: 500; line-height: 1.06; letter-spacing: -.035em; }
+    .section-copy { max-width: 390px; margin: 0; color: var(--muted); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .step { min-height: 205px; padding: 25px; border: 1px solid var(--line); border-radius: 17px; background: var(--white); }
+    .step-number { color: #7b925e; font-size: 12px; font-weight: 750; letter-spacing: .12em; }
+    .step h3 { margin: 35px 0 8px; font-size: 19px; letter-spacing: -.025em; }
+    .step p { margin: 0; color: var(--muted); font-size: 14px; }
+    .callout { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px; padding: clamp(28px, 5vw, 53px); border-radius: 22px; background: #e8efdd; }
+    .callout h2 { max-width: 610px; font-size: clamp(31px, 4vw, 45px); }
+    .callout p { max-width: 590px; margin: 13px 0 0; color: var(--muted); }
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px 0 35px; border-top: 1px solid var(--line); color: #6c7b73; font-size: 12px; }
+    footer a { text-decoration: none; }
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 36px, 560px); }
+      nav a:not(.nav-cta) { display: none; }
+      .hero { padding-top: 65px; }
+      .hero::after { right: -260px; top: 130px; opacity: .45; }
+      .signal { grid-template-columns: 1fr; margin-bottom: 70px; }
+      .signal div + div { border-left: 0; border-top: 1px solid var(--line); }
+      .signal div { padding: 17px 20px; }
+      .section-heading { display: block; }
+      .section-copy { margin-top: 15px; }
+      .steps { grid-template-columns: 1fr; }
+      .step { min-height: 0; }
+      .step h3 { margin-top: 20px; }
+      .callout { grid-template-columns: 1fr; }
+      footer { display: block; }
+      footer span { display: block; margin-top: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="#top" aria-label="ChooseTheFuture home"><span class="mark" aria-hidden="true">↗</span><span>ChooseTheFuture</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#how">How it works</a>
+        <a href="#why">Why it matters</a>
+        <a class="nav-cta" href="#how">See the idea <span aria-hidden="true">→</span></a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <span class="eyebrow">A community for choosing what gets built</span>
+          <h1 id="hero-title">The future is ours to <em>choose.</em></h1>
+          <p class="intro">There are more good ideas than any one team can build. ChooseTheFuture helps people rally around the open-source projects they want to see—and invites their AI coding agents to lend a hand.</p>
+          <div class="actions">
+            <a class="button" href="#how">See how it works <span aria-hidden="true">→</span></a>
+            <a class="button secondary" href="#why">Why ChooseTheFuture?</a>
+          </div>
+          <p class="note">You choose the projects. Your coding agent helps in your own workspace.</p>
+        </div>
+      </section>
+
+      <div class="signal" id="why" aria-label="What ChooseTheFuture does">
+        <div><strong>Choose together</strong><span>Support goals you want to see become real.</span></div>
+        <div><strong>Contribute your way</strong><span>Use the coding agent and tools you already have.</span></div>
+        <div><strong>Keep projects open</strong><span>Contributions go through the project's normal review process.</span></div>
+      </div>
+
+      <section id="how" aria-labelledby="how-title">
+        <div class="section-heading">
+          <div><span class="eyebrow">Simple by design</span><h2 id="how-title">A small nudge can move a big idea forward.</h2></div>
+          <p class="section-copy">No technical background needed to choose what deserves attention. People point the way; their own coding agents help turn that interest into contributions.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><span class="step-number">01 / CHOOSE</span><h3>Find an idea you believe in</h3><p>Explore projects and goals, then show which ones matter to you.</p></article>
+          <article class="step"><span class="step-number">02 / INVITE</span><h3>Bring your coding agent</h3><p>Get a project-specific prompt to use with the coding agent you already have.</p></article>
+          <article class="step"><span class="step-number">03 / CONTRIBUTE</span><h3>Help the project make progress</h3><p>Review the work and submit it through the project's usual contribution process.</p></article>
+        </div>
+      </section>
+
+      <section aria-label="Project invitation">
+        <div class="callout">
+          <div><span class="eyebrow">The idea</span><h2>More people can help shape the software we all depend on.</h2><p>ChooseTheFuture is being built as a public guide to worthwhile open-source work—a place to decide where your next coding-agent session should go.</p></div>
+          <a class="button" href="#top">Follow the project <span aria-hidden="true">↑</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer><a class="brand" href="#top"><span>ChooseTheFuture</span></a><span>Choose what matters. Help build what comes next.</span></footer>
+  </div>
+</body>
+</html>
