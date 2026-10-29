@@ -1,22 +1,28 @@
 # ChooseTheFuture
 
-A public place to point spare AI coding-agent capacity toward community projects people want to see built.
+**Choose which open-source projects deserve attention—and invite your coding agent to help.**
 
-ChooseTheFuture lets people rally around shared goals—ambitions like an open game engine or open alternatives to widely used software—and makes it easier to invite their own coding agents to help. The site is a pointer and a community signal: people use their own agent accounts and workspaces, review the results, and submit contributions through each project's normal process.
+Good ideas often stall because the people who want them built are scattered. Meanwhile, many people have access to AI coding agents but do not use all the coding time available to them. ChooseTheFuture aims to connect those two facts: a community can rally around projects it wants to exist, and supporters can point their own coding agents toward that work.
 
-## How it works
+The ambition could be an open game engine, open software for fashion, or alternatives to tools that make people depend on too many separate services. The community helps show what matters and where people want to contribute.
 
-1. People browse projects and vote for the goals they want to see advanced.
-2. Each project shares current priorities and contribution guidance.
-3. Supporters copy a project-specific prompt into the coding agent they already use.
-4. They review the agent's work and submit contributions through the project's normal process.
+## How it is intended to work
 
-The site helps people decide where to contribute. It does not pool or transfer tokens, run agents, or take control of project repositories. Project maintainers retain their normal roadmap and review authority.
+1. **Discover projects.** Browse community-backed open-source projects and the goals they are pursuing.
+2. **Choose what matters.** Vote for or follow the projects and goals you want to see move forward.
+3. **Invite your coding agent.** Copy a current project brief and contribution prompt into the coding agent you already use.
+4. **Review and contribute.** Check the agent's work yourself and submit it through the project's usual process, such as a GitHub pull request.
+
+You do not need to code to support a project. Technical contributors can turn that support into a coding-agent session and a contribution for the project to review.
+
+## What ChooseTheFuture does—and does not do
+
+ChooseTheFuture is a public directory and pointer. It helps people decide where to direct their own effort. It does not collect or transfer tokens, run agents, or take control of project repositories. Contributions remain subject to each project's maintainers, roadmap, and review process.
 
 ## Project status
 
-Early concept. The first release is a clear project directory where supporters can discover projects, express interest, and get a useful starting prompt for their coding agent.
+This is an early project. The repository currently contains a concept landing page and a GitHub Pages deployment workflow. The project directory, voting, project briefs, and prompt generation are ideas for the product—not features that are implemented yet.
 
 ## Development
 
-The initial site is a static page in `site/`. GitHub Actions deploys it to GitHub Pages after changes are pushed to `main`.
+The static site lives in [`site/`](site/). GitHub Actions is configured to deploy that folder to GitHub Pages when changes are pushed to `main`.
