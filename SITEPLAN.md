@@ -7,9 +7,9 @@ ChooseTheFuture is a public place where people decide which open-source projects
 The site connects two groups:
 
 - **Supporters** who care about what gets built, even if they do not code.
-- **Agent contributors** who choose projects for the ChooseTheFuture Connector and contribute agent capacity using their own model access.
+- **Agent contributors** who choose projects for the ChooseTheFuture Connector and contribute agent capacity through the project’s selected provider.
 
-ChooseTheFuture combines a public project directory with a task coordination service and a user-installed connector. The connector manages a local OpenHands runtime and is intended to interoperate with alternative clients through MCP and other adapters. Users configure their own model access; ChooseTheFuture does not pool credentials or run users’ agents on its servers. Maintainers decide which tasks are eligible and review submitted contributions.
+ChooseTheFuture combines a public project directory with a task-coordination service and a user-facing connector. Maintainers choose a supported workflow integration for each project, such as OpenHands or Paperclip; the connector routes work through that integration. Users opt into projects and contribute agent capacity. Where agents run and whose model access they use depends on the selected integration and must be explicit. ChooseTheFuture does not host agent runs or pool credentials. Maintainers decide which tasks are eligible and review submitted contributions.
 
 ## 2. Product goals
 
@@ -37,9 +37,9 @@ May not know how to code or what a repository issue means. Wants to understand t
 
 ### Agent contributor
 
-Installs the ChooseTheFuture Connector, chooses which projects it may work on, and contributes agent capacity using their own model access. They need understandable setup, clear project/task controls, and confidence that submissions go to maintainers for review.
+Installs the ChooseTheFuture Connector, chooses which projects it may work on, and contributes agent capacity through each project’s selected workflow integration. They need understandable setup, clear project/task controls, and confidence that submissions go to maintainers for review.
 
-**Needs:** clear consent and project allowlisting, simple setup, visible activity and controls, and a connector that manages the agent runtime without requiring them to operate coding sessions manually.
+**Needs:** clear consent and project allowlisting, simple setup, visible activity and controls, and a connector that works with the project’s chosen integration without requiring them to operate coding sessions manually.
 
 ### Project maintainer
 
@@ -65,7 +65,7 @@ Core pages:
 4. **Goal or task detail** — a focused outcome, acceptance context, source links, and task availability.
 5. **Submit a project** — a lightweight nomination form; publication follows a review step.
 6. **Maintainer settings** — update a brief, approved tasks, eligibility, and pause state.
-7. **Connector setup and settings** — install/manage the local runtime, select projects, and control agent activity.
+7. **Connector setup and settings** — install the connector, select projects, configure the selected integrations, and control agent activity.
 
 ## 5. Key user flows
 
@@ -80,12 +80,12 @@ Core pages:
 
 ### B. Contribute agent capacity
 
-1. Install the ChooseTheFuture Connector, which manages the local OpenHands runtime.
-2. Configure the user’s model access and explicitly choose which enrolled projects the connector may serve.
+1. Install the ChooseTheFuture Connector.
+2. Explicitly choose which enrolled projects it may serve and configure any access required by each project’s selected integration.
 3. The coordinator offers eligible tasks from those projects; the connector claims a task with a temporary lease to prevent duplicate assignments.
 4. The connector runs the agent in a separate task workspace and automatically submits the result, for example as a pull request, for maintainer review.
 5. The user can monitor activity, change limits, pause the connector, or revoke project access. They contribute agent capacity rather than manually driving each task.
-6. Alternative coding clients can connect through MCP or a supported adapter where available.
+6. The connector routes each project’s tasks through its maintainer-selected integration, such as OpenHands or Paperclip. Alternative clients can connect through MCP or a supported adapter where available.
 
 ### C. Add or maintain a project
 
@@ -140,7 +140,7 @@ Recommended sections:
 
 ### Goal/task page and task availability
 
-Show the goal in outcome terms, its current status, acceptance context, related issue/PR links, maintainer notes, last update, and whether maintainer-approved tasks are available to connector users. Task eligibility and temporary claim status should be clear. The connector should provide the agent with the maintainer-approved task, acceptance context, and project instructions; acquire a temporary claim before running; keep the work bounded; and attach a concise summary of changes, checks, and limitations to the submission. It submits work for maintainer review and never merges automatically. Model credentials remain on the user’s machine and out of task payloads and submissions.
+Show the goal in outcome terms, its current status, acceptance context, related issue/PR links, maintainer notes, last update, and whether maintainer-approved tasks are available to connector users. Identify the selected workflow integration and clearly describe where work runs and whose model access it uses. Task eligibility and temporary claim status should be clear. The connector should provide the selected provider with the maintainer-approved task, acceptance context, and project instructions; acquire a temporary claim before handoff; keep work bounded; and attach a concise summary of changes, checks, and limitations to the submission. It submits work for maintainer review and never merges automatically. Model credentials must not be sent to the ChooseTheFuture coordinator or included in task content and submissions.
 
 ## 7. Voting and participation semantics
 
@@ -159,6 +159,8 @@ Show the goal in outcome terms, its current status, acceptance context, related 
 - Name, slug, summary, description, topics, logo or image.
 - Repository URL and project website.
 - Project ownership/maintainer contact state.
+- Selected workflow integration and non-secret connection/configuration metadata.
+- Execution mode and model-access responsibility, clearly disclosed for the integration.
 - Contribution guide URL and project-specific exclusions.
 - Maintainer participation state and last-confirmed date.
 - Goals, current tasks, support totals, and activity links.
@@ -186,7 +188,7 @@ Show the goal in outcome terms, its current status, acceptance context, related 
 - Let maintainers pause or remove a goal from the active contribution list.
 - Require explicit maintainer enrollment and task eligibility before connector users can claim work.
 - Make task claims atomic and expiring so simultaneous connectors do not start the same task.
-- Keep each task in its own workspace; keep model credentials in local connector/runtime configuration, not in task content or the repository workspace.
+- Keep each task in its own workspace; keep model credentials in the selected provider’s configuration, not in task content, the repository workspace, or the ChooseTheFuture coordinator.
 - Submit changes as pull requests or another project-approved submission; do not directly edit a maintainer’s working branch or merge automatically.
 - Make connector project allowlists and pause/revoke controls visible to users.
 - Link back to source issues, repositories, and project-owned guidance.
@@ -223,13 +225,13 @@ The experience should feel welcoming, hopeful, and credible—not like a develop
 - Lightweight supporter identity and changeable project/goal votes.
 - Goal and task pages with maintainer-controlled eligibility.
 - Coordinator service for task discovery, atomic claims, lease expiry, and submission status. Host separately from the static GitHub Pages site as needed.
-- Connector prototype that manages a local OpenHands runtime, uses locally configured model access, and submits results for maintainer review.
+- Connector prototype with project-selected OpenHands and Paperclip integrations; make each integration’s execution and credential model explicit and submit results for maintainer review.
 - Basic abuse controls and moderation queue.
 
 ### Phase 3: Connector usability and client interoperability
 
 - Maintainer claim/verification and self-service project updates.
-- Guided Windows and macOS installer that manages the local runtime with minimal setup; decide the sandbox approach during feasibility work.
+- Guided Windows and macOS installer that configures the connector and selected provider with minimal setup; validate each supported execution/sandbox mode during feasibility work.
 - MCP interface and adapters for alternative coding-agent clients.
 - Maintainer task enrollment and status integration with GitHub Issues and Projects where useful.
 - Stale-task reminders and project update notifications.
@@ -255,7 +257,8 @@ Keep interest counts separate from task claims, submitted work, and accepted con
 - Which identity method makes voting easy for non-technical supporters while limiting duplicate votes?
 - Should project owners approve every goal before it appears, or can community-proposed goals be shown separately?
 - What is the lightest way to keep task status fresh without creating work for maintainers?
-- What task and submission status can the coordinator collect while keeping model credentials and agent workspaces local?
-- Which client integrations beyond OpenHands should the MCP interface and adapters support?
-- Which Windows/macOS runtime and sandbox approach can meet the low-friction installation goal?
+- What task and submission status can the coordinator collect while keeping model credentials and workspaces outside the coordinator?
+- Which provider integrations beyond OpenHands and Paperclip should be supported?
+- Where does each provider run, and whose model access does it use?
+- Which Windows/macOS installer and provider-specific isolation approaches can meet the low-friction installation goal?
 - How should the directory balance popular projects with new or under-discovered projects?
