@@ -1,6 +1,6 @@
 # ChooseTheFuture Architecture
 
-This document records the agreed system boundaries so product, coordinator, connector, and provider-integration work can proceed in parallel. It describes intended behavior, not implemented functionality. See [`PROJECTPLAN.md`](../PROJECTPLAN.md) for milestones and [`SITEPLAN.md`](../SITEPLAN.md) for the user experience.
+This document records the agreed system boundaries so product, coordinator, connector, and provider-integration work can proceed in parallel. It describes intended behavior, not implemented functionality. See [`PROJECTPLAN.md`](../PROJECTPLAN.md) for milestones, [`SITEPLAN.md`](../SITEPLAN.md) for the user experience, and [`PROVIDER-COMPATIBILITY.md`](PROVIDER-COMPATIBILITY.md) for the OpenHands/Paperclip adapter assessment.
 
 ## System outline
 

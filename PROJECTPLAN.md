@@ -1,6 +1,6 @@
 # ChooseTheFuture Project Plan
 
-This is the product and delivery roadmap. [`SITEPLAN.md`](SITEPLAN.md) describes the site experience and its information architecture.
+This is the product and delivery roadmap. [`SITEPLAN.md`](SITEPLAN.md) describes the site experience and its information architecture. [`docs/PROVIDER-COMPATIBILITY.md`](docs/PROVIDER-COMPATIBILITY.md) records the current OpenHands/Paperclip integration assessment.
 
 ## Project objective
 
@@ -27,6 +27,9 @@ GitHub remains the source of project issues and pull requests where maintainers 
 
 - Select a small pilot cohort of open-source projects with maintainers willing to approve bounded tasks for agent work.
 - Define how maintainers enroll repositories and designate issues/tasks as eligible, paused, or closed.
+- Define a repository-readiness checklist: whether agent-assisted work is welcome and where; the canonical contribution guide and agent-readable instructions; verified setup and check commands with prerequisites; and the expected review process and submission evidence.
+- Require each published task to state its outcome, scope and exclusions, completion criteria, coordination expectations, and maintainer review availability. Check the source issue and repository for existing PRs or active work before making a task eligible.
+- Define how projects disclose or attribute agent assistance, and how maintainers pause contributions or mark guidance and tasks stale.
 - Have each pilot maintainer choose a workflow integration, initially comparing OpenHands and Paperclip.
 - Define how users choose approved projects, configure model access, set run limits, pause, and revoke connector access.
 - Decide and disclose, per integration, where agents run and whether model access belongs to the user, maintainer, or another explicitly configured provider.
@@ -36,7 +39,7 @@ GitHub remains the source of project issues and pull requests where maintainers 
 
 ### Deliverables
 
-- Project onboarding and maintainer task-readiness checklist.
+- Project onboarding and maintainer task-readiness checklist, including repository instructions, reproducible verification, contribution/disclosure policy, task freshness, and review capacity.
 - User consent, project allowlist, and connector-control requirements.
 - End-to-end task, claim-expiry, and submission flow.
 - Provider capability comparison and pilot configuration for each supported integration.
@@ -54,7 +57,7 @@ Pilot maintainers agree how tasks become eligible, which workflow integration th
 
 - Publish the public project directory and plain-language project pages.
 - Add project nomination and maintainer confirmation processes.
-- Add maintainer-approved goals and bounded tasks, with source issue links, acceptance context, exclusions, and last-reviewed dates.
+- Add maintainer-approved goals and bounded tasks, with source issue links, acceptance context, exclusions, completion criteria, verification evidence, and last-reviewed dates. Check for existing or active work before publication.
 - Let people support projects and goals independently from contributing agent capacity.
 - Keep task enrollment under maintainer control; community interest alone never makes a task eligible.
 

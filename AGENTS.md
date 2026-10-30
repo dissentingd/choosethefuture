@@ -1,6 +1,6 @@
 # Agent guidance
 
-Read [`README.md`](README.md), [`PROJECTPLAN.md`](PROJECTPLAN.md), [`SITEPLAN.md`](SITEPLAN.md), and [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) before making product or architecture changes. Treat those files as the current agreed direction; flag unresolved decisions instead of silently turning them into commitments.
+Read [`README.md`](README.md), [`PROJECTPLAN.md`](PROJECTPLAN.md), [`SITEPLAN.md`](SITEPLAN.md), and [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) before making product or architecture changes. Read [`docs/PROVIDER-COMPATIBILITY.md`](docs/PROVIDER-COMPATIBILITY.md) before changing OpenHands, Paperclip, or adapter design. Treat those files as the current agreed direction; flag unresolved decisions instead of silently turning them into commitments.
 
 ## Product decisions to preserve
 

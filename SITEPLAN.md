@@ -92,8 +92,9 @@ Core pages:
 1. A project owner or community member submits a project nomination.
 2. An editor checks that the project is open source, has an identifiable repository, and has a useful project brief.
 3. The project is published with an explicit maintainer participation state: **maintainer-confirmed**, **community-submitted**, or **not recently confirmed**.
-4. Maintainers can confirm ownership and supply goals/tasks, contribution rules, exclusions, and a last-reviewed date.
-5. Maintainers can mark work active, blocked, paused, or complete. Stale guidance is visibly flagged and can be hidden from “ready to contribute” views.
+4. Maintainers confirm ownership and supply goals/tasks, contribution rules, exclusions, an agent-contribution policy, and a last-reviewed date.
+5. Before a task is marked ready, maintainers define its outcome, scope, exclusions, completion criteria, required verification evidence, and coordination expectations; check the source issue and repository for existing PRs or active work; and confirm review capacity.
+6. Maintainers can mark work active, blocked, paused, or complete. Stale guidance is visibly flagged and can be hidden from “ready to contribute” views. Pausing project contributions withdraws its tasks from new claims.
 
 ## 6. Page design
 
@@ -183,9 +184,24 @@ Show the goal in outcome terms, its current status, acceptance context, related 
 
 ## 9. Trust, quality, and moderation
 
+### Repository and task readiness
+
+Before inviting connector work, project onboarding should confirm:
+
+- The project states whether agent-assisted contributions are welcome, which areas are suitable, and whether contributors should ask before starting.
+- A canonical contribution guide and agent-readable project instructions are linked. Do not require a specific instruction filename or duplicate conflicting guidance.
+- Setup and verification commands have been run in a clean checkout. Document prerequisites, services or credentials, what each check covers, and how contributors should report checks they could not run.
+- Each ready task has a concrete outcome, bounded scope, exclusions, completion criteria, source links, and any required evidence for review.
+- The source issue and repository have been checked for existing pull requests or active work, and the task's coordination expectations are clear.
+- A maintainer is available to review submissions, and the project's AI-assistance disclosure or attribution policy is stated.
+- Project availability, task status, and guidance freshness are current. Maintainers can pause enrollment and withdraw eligible tasks from new claims.
+
+Templates may help maintainers prepare these materials, but they must replace examples with their actual project policies and verified commands.
+
 - Clearly distinguish maintainer-confirmed information from community-submitted information.
 - Give every brief and task a visible last-reviewed date.
 - Let maintainers pause or remove a goal from the active contribution list.
+- When maintainers pause project participation or mark a task stale, prevent new claims and define how any existing lease is stopped or reconciled.
 - Require explicit maintainer enrollment and task eligibility before connector users can claim work.
 - Make task claims atomic and expiring so simultaneous connectors do not start the same task.
 - Keep each task in its own workspace; keep model credentials in the selected provider’s configuration, not in task content, the repository workspace, or the ChooseTheFuture coordinator.
