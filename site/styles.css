@@ -20,7 +20,7 @@ header { display: flex; align-items: center; justify-content: space-between; pad
 .brand { display: flex; gap: 11px; align-items: center; font-weight: 750; letter-spacing: -.035em; text-decoration: none; }
 .mark { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 50%; background: var(--green); color: var(--lime); font-size: 17px; }
 nav { display: flex; align-items: center; gap: 27px; font-size: 14px; color: var(--muted); }
-nav a { text-decoration: none; }
+nav a { text-decoration: none; white-space: nowrap; }
 nav a:hover, nav a[aria-current="page"] { color: var(--green); }
 nav a[aria-current="page"] { font-weight: 650; }
 .nav-cta, .button { display: inline-flex; justify-content: center; align-items: center; gap: 9px; padding: 12px 18px; border: 1px solid var(--green); border-radius: 999px; color: var(--white); background: var(--green); font-weight: 650; text-decoration: none; transition: transform .15s ease, background .15s ease; }
@@ -90,6 +90,13 @@ footer nav { gap: 18px; font-size: 12px; }
 .project .related a { color: var(--green); font-weight: 650; }
 .card .tbd { display: inline-block; margin-top: 10px; color: #7b6a2e; font-size: 12px; font-weight: 650; }
 
+@media (max-width: 960px) {
+  header nav { gap: 18px; }
+  header .nav-cta span { display: none; }
+}
+@media (max-width: 860px) {
+  header nav a:not(.nav-cta) { display: none; }
+}
 @media (max-width: 720px) {
   .wrap { width: min(100% - 32px, 560px); }
   header nav a:not(.nav-cta) { display: none; }
