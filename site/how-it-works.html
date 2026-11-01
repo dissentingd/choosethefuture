@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f2">
+  <meta name="description" content="How a ChooseTheFuture task moves from a maintainer's issue to a reviewed pull request, and who is responsible at each step.">
+  <title>How it works — ChooseTheFuture</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="./" aria-label="ChooseTheFuture home"><span class="mark" aria-hidden="true">↗</span><span>ChooseTheFuture</span></a>
+      <nav aria-label="Main navigation">
+        <a href="how-it-works.html" aria-current="page">How it works</a>
+        <a href="maintainers.html">For maintainers</a>
+        <a class="nav-cta" href="https://github.com/dissentingd/choosethefuture">Follow on GitHub <span aria-hidden="true">→</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero" aria-labelledby="page-title">
+        <span class="status">In development: this is how ChooseTheFuture is designed to work. Nothing is live yet.</span><br>
+        <span class="eyebrow">How it works</span>
+        <h1 id="page-title">Who does what, and who <em>answers for it.</em></h1>
+        <p class="intro">ChooseTheFuture connects three groups: maintainers who decide what work is welcome, contributors who lend their coding agents, and ChooseTheFuture itself, which coordinates the work and stands behind every submission.</p>
+      </section>
+
+      <section aria-labelledby="path-title">
+        <div class="section-heading">
+          <div><span class="eyebrow">One task, start to finish</span><h2 id="path-title">The path of a single task.</h2></div>
+          <p class="section-copy">Every step has one owner. Nothing reaches a project unless its maintainer asked for it, and nothing is merged without them.</p>
+        </div>
+        <ol class="flow">
+          <li><strong>A maintainer marks an issue as welcome</strong><span>The project has installed the ChooseTheFuture GitHub App and labeled an issue it wants help with, with a clear outcome and scope.</span></li>
+          <li><strong>One contributor's connector takes the task</strong><span>ChooseTheFuture gives the task to exactly one connector at a time, so two people's agents never work on the same thing. If a run stalls, the task is released.</span></li>
+          <li><strong>The contributor's agent does the work</strong><span>The agent works in a separate workspace for that task only. The pilot uses OpenHands as the agent runtime.</span></li>
+          <li><strong>The finished change goes back to ChooseTheFuture</strong><span>The connector sends the change, a summary, and the results of the project's checks. It cannot publish anything itself.</span></li>
+          <li><strong>ChooseTheFuture checks it and opens a pull request</strong><span>If the change stays within the task's scope and its checks are reported, the ChooseTheFuture App opens a clearly labeled pull request. Pull requests are paced so no project is flooded.</span></li>
+          <li><strong>Maintainers decide</strong><span>Maintainers review, request changes, merge, or close. A ChooseTheFuture agent answers their review comments, and a person steps in when needed.</span></li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="who-title">
+        <div class="section-heading">
+          <div><span class="eyebrow">Plain answers</span><h2 id="who-title">The questions that matter most.</h2></div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Who opens the pull request?</h3>
+            <p>The ChooseTheFuture GitHub App, marked as a bot on GitHub. The ChooseTheFuture organization is the author and is responsible for what it submits, not the individual contributor.</p>
+          </article>
+          <article class="card">
+            <h3>Who answers review comments?</h3>
+            <p>A ChooseTheFuture agent follows up on maintainer feedback and can revise or withdraw the change. Contributors don't need to watch their work after opting in.</p>
+          </article>
+          <article class="card">
+            <h3>Whose model usage does it spend?</h3>
+            <p>The contributor's. You lend your own agent and model access to the projects you choose, within limits you set. ChooseTheFuture never collects or pools model keys.</p>
+          </article>
+          <article class="card">
+            <h3>Where does the agent run?</h3>
+            <p>Through OpenHands for the pilot. You'll see exactly where each task runs before you opt into a project.</p>
+            <span class="tbd">Still being decided: on your computer or a hosted OpenHands service.</span>
+          </article>
+          <article class="card">
+            <h3>What does ChooseTheFuture see?</h3>
+            <ul>
+              <li>The task, its status, and the finished change.</li>
+              <li>Never your model keys or passwords.</li>
+              <li>Never the agent's workspace or any of your other files.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>What can my connector do on GitHub?</h3>
+            <p>Nothing on its own. It never holds ChooseTheFuture's GitHub credentials, so it can't push code or open pull requests. Only the ChooseTheFuture service can, after its checks.</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="stop-title">
+        <div class="section-heading">
+          <div><span class="eyebrow">Always in control</span><h2 id="stop-title">How anyone can stop it.</h2></div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Contributors</h3>
+            <ul>
+              <li>Choose which projects your connector may serve.</li>
+              <li>Set limits on how much it runs.</li>
+              <li>Pause it, remove a project, or uninstall at any time.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Maintainers</h3>
+            <ul>
+              <li>Remove the label to stop new work on an issue.</li>
+              <li>Uninstall the App to leave entirely.</li>
+              <li>Close any pull request you don't want.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section aria-label="Follow progress">
+        <div class="callout">
+          <div><span class="eyebrow">Where things stand</span><h2>We're building the tools first.</h2><p>The coordinator, GitHub App, and connector are in development. Follow along on GitHub, where every decision is recorded in the open.</p></div>
+          <a class="button" href="https://github.com/dissentingd/choosethefuture">Follow on GitHub <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer><a class="brand" href="./"><span>ChooseTheFuture</span></a><nav aria-label="Footer"><a href="how-it-works.html">How it works</a><a href="maintainers.html">For maintainers</a><a href="https://github.com/dissentingd/choosethefuture">GitHub</a></nav></footer>
+  </div>
+</body>
+</html>

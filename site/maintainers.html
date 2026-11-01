@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f2">
+  <meta name="description" content="How open-source maintainers opt in to ChooseTheFuture, choose which issues agents may work on, and stay in control of every pull request.">
+  <title>For maintainers — ChooseTheFuture</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="./" aria-label="ChooseTheFuture home"><span class="mark" aria-hidden="true">↗</span><span>ChooseTheFuture</span></a>
+      <nav aria-label="Main navigation">
+        <a href="how-it-works.html">How it works</a>
+        <a href="maintainers.html" aria-current="page">For maintainers</a>
+        <a class="nav-cta" href="https://github.com/dissentingd/choosethefuture">Follow on GitHub <span aria-hidden="true">→</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero" aria-labelledby="page-title">
+        <span class="status">In development: the pilot isn't open yet. This page describes how it's designed to work.</span><br>
+        <span class="eyebrow">For project maintainers</span>
+        <h1 id="page-title">Your repository, <em>your rules.</em></h1>
+        <p class="intro">ChooseTheFuture only works on projects that ask for it, only on the issues you pick, and never merges anything. If your project doesn't want agent contributions, simply don't install it. Nothing will be sent your way.</p>
+      </section>
+
+      <section aria-labelledby="optin-title">
+        <div class="section-heading">
+          <div><span class="eyebrow">Opting in</span><h2 id="optin-title">Two steps, both yours.</h2></div>
+          <p class="section-copy">Installing the App is your consent. ChooseTheFuture never opens pull requests on repositories where it isn't installed.</p>
+        </div>
+        <ol class="flow">
+          <li><strong>Install the ChooseTheFuture GitHub App</strong><span>Choose exactly which repositories it can see. It's designed to need only the permissions to read issues and open pull requests. It doesn't push code to your repository: its branches live on a ChooseTheFuture fork.</span></li>
+          <li><strong>Label the issues you'd welcome help with</strong><span>Only labeled issues become tasks. Everything else in your tracker is ignored.</span></li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="task-title">
+        <div class="section-heading">
+          <div><span class="eyebrow">Good tasks</span><h2 id="task-title">What makes an issue ready.</h2></div>
+          <p class="section-copy">Agents do their best work on small, well-described tasks. Before labeling an issue, check that it has:</p>
+        </div>
+        <div class="cards">
+          <article class="card"><h3>A clear outcome</h3><p>What should be true when the task is done, in a sentence or two.</p></article>
+          <article class="card"><h3>Scope and exclusions</h3><p>Which parts of the code are in bounds, and what the change should not touch.</p></article>
+          <article class="card"><h3>A way to verify</h3><p>The commands or tests that show the change works, and any setup they need.</p></article>
+          <article class="card"><h3>No one else on it</h3><p>Check there's no open pull request or active work on the same issue.</p></article>
+        </div>
+      </section>
+
+      <section aria-labelledby="receive-title">
+        <div class="section-heading">
+          <div><span class="eyebrow">What arrives</span><h2 id="receive-title">What you'll receive.</h2></div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>A clearly labeled pull request</h3>
+            <p>Opened by the ChooseTheFuture App, marked as a bot, stating that an agent produced it. ChooseTheFuture is the author and is accountable for it.</p>
+          </article>
+          <article class="card">
+            <h3>A summary with evidence</h3>
+            <p>What changed, which of your checks ran and their results, and any known limitations.</p>
+          </article>
+          <article class="card">
+            <h3>A pace you can handle</h3>
+            <p>Pull requests are limited per repository and start low. Changes that leave the task's scope or skip its checks are stopped before they reach you.</p>
+          </article>
+          <article class="card">
+            <h3>Someone to answer questions</h3>
+            <p>A ChooseTheFuture agent responds to your review comments and revises or withdraws the change. A person steps in when the agent can't resolve it.</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="leave-title">
+        <div class="section-heading">
+          <div><span class="eyebrow">Pausing or leaving</span><h2 id="leave-title">Step back whenever you like.</h2></div>
+        </div>
+        <div class="cards">
+          <article class="card"><h3>Pause an issue</h3><p>Remove its label. No new work starts on it, and work in progress is stopped.</p></article>
+          <article class="card"><h3>Leave entirely</h3><p>Uninstall the App. All of your repository's tasks are withdrawn.</p></article>
+          <article class="card"><h3>Decline any change</h3><p>Close the pull request. You never owe ChooseTheFuture a merge, a review, or an explanation.</p></article>
+          <article class="card"><h3>Your policy comes first</h3><p>Your contribution guide and any agent-contribution rules apply to every ChooseTheFuture pull request.</p></article>
+        </div>
+      </section>
+
+      <section aria-label="Pilot status">
+        <div class="callout">
+          <div><span class="eyebrow">The pilot</span><h2>We're building the tools before inviting projects.</h2><p>Once the App and connector work end to end, we'll open a small pilot. Follow the repository to hear when it starts.</p></div>
+          <a class="button" href="https://github.com/dissentingd/choosethefuture">Follow on GitHub <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer><a class="brand" href="./"><span>ChooseTheFuture</span></a><nav aria-label="Footer"><a href="how-it-works.html">How it works</a><a href="maintainers.html">For maintainers</a><a href="https://github.com/dissentingd/choosethefuture">GitHub</a></nav></footer>
+  </div>
+</body>
+</html>
