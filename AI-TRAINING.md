@@ -24,7 +24,7 @@ Permission exists only when granted in writing, and covers only the material, pu
 
 ## AI-assisted development: through the connector, or with written permission
 
-**Through the ChooseTheFuture Connector.** AI-assisted development with provider-side training off is welcome through the connector. Before running a task, the connector checks the contributor's provider configuration on their own machine against this policy, and declines the task if training could be on or the setting can't be confirmed. Projects that take part in ChooseTheFuture can declare their own training policy the same way.
+**Through the ChooseTheFuture Connector.** AI-assisted development with provider-side training off is welcome through the connector. During setup, the connector shows the contributor how to turn off provider-side training, requires them to read and accept this policy, and requires them to acknowledge that training is off. It runs no tasks until they have. Projects that take part in ChooseTheFuture can declare their own training policy the same way.
 
 **Outside the connector.** Using AI coding tools or agents on this repository any other way needs prior written permission, because nothing else enforces that provider-side training is off. Ask by opening an issue titled **"AI-assisted development permission request"** with the same five disclosures listed above. As with training, permission exists only when granted in writing, and covers only what it names.
 

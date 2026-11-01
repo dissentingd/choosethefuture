@@ -45,17 +45,16 @@
       <section aria-labelledby="training-title">
         <div class="section-heading">
           <div><span class="eyebrow">Training stays off</span><h2 id="training-title">Your agent won't feed someone's training data.</h2></div>
-          <p class="section-copy">Projects can say whether AI providers may train on their code. The connector respects that on your machine, before any work starts.</p>
+          <p class="section-copy">Projects can say whether AI providers may train on their code. The connector makes sure you've turned training off before any work starts.</p>
         </div>
         <div class="cards">
           <article class="card">
-            <h3>Checked before every task</h3>
-            <p>The connector checks how your model access is set up against the project's training policy. If the provider could train on the session, or the connector can't confirm it won't, the task doesn't run.</p>
+            <h3>Set up once, before any work</h3>
+            <p>During setup, the connector shows you how to turn off training with your model provider. You read the terms that require it, then confirm that training is off. No tasks run until you have.</p>
           </article>
           <article class="card">
-            <h3>What usually passes</h3>
-            <p>Access whose terms exclude your content from training, such as most providers' paid API plans, or a model running on your own computer.</p>
-            <span class="tbd">Still being decided: exactly which access methods the connector accepts.</span>
+            <h3>Often already off</h3>
+            <p>Many providers' paid API plans exclude your content from training by default, and a model running on your own computer never sends it anywhere. Consumer subscriptions usually have a setting you switch off.</p>
           </article>
         </div>
       </section>
