@@ -62,7 +62,7 @@ Hosting provider, database, and maintainer authentication beyond App installatio
 - Claim tasks through the coordinator and route them to the workflow integration selected by that project.
 - Return task/run status and a submission patch (with run summary and check results) to the coordinator. The connector never holds GitHub write credentials and never pushes or opens pull requests itself.
 - Use provider adapters so the connector does not assume every project runs the same integration. The pilot ships only the OpenHands adapter.
-- During setup, give instructions for turning off provider-side training, require the contributor to read and accept the terms requiring it, and require them to acknowledge that training is off before any task runs (see DECISIONS D10). Repeat this when they connect different model access. Provider account details stay on the contributor's machine.
+- During setup, give instructions for turning off provider-side training, require the contributor to read and accept the connector's terms of use, which require it, and require them to acknowledge that training is off before any task runs (see DECISIONS D10). Repeat this when they connect different model access. Provider account details stay on the contributor's machine.
 - Present a ChooseTheFuture identity; providers are integrations, not the product identity.
 
 Exact installer packaging, supported operating-system versions, provider authentication, where runs execute, whose model access is used, sandbox/isolation, and update channel remain open decisions. The system must make these choices explicit per integration/project. Docker is not a prerequisite assumed by this plan.

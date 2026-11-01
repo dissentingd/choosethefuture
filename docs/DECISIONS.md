@@ -66,11 +66,12 @@ The repository is licensed like PublicSewing: PolyForm Noncommercial 1.0.0 for s
 Participating projects can declare a training policy. Provider training toggles generally can't be read by local software, so the ChooseTheFuture Connector enforces the policy during setup (decided 2026-11-01):
 
 1. It gives the contributor instructions for turning off provider-side training for the model access they connect.
-2. It requires them to read the terms that oblige them to keep training off.
+2. It requires them to read the connector's terms of use, which oblige them to keep training off. The training-off requirement is part of those terms.
 3. It requires them to accept those terms and acknowledge that they have turned training off. The connector runs no tasks until they have.
 
 The acknowledgment is recorded locally and covers the model access the contributor connected; connecting different model access repeats the steps. The coordinator does not receive the contributor's provider account details.
 
+- **Still to write:** the connector's terms of use.
 - **Still to decide:** whether the connector also refuses configurations it can tell would allow training (for example, a provider's free tier), and how often acknowledgment is renewed.
 - The policy vocabulary, at least "no commercial training without permission" and "no training", is still to be defined, along with where projects declare it.
 
