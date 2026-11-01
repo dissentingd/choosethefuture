@@ -50,3 +50,24 @@ The pilot supports a single workflow integration, **OpenHands**. Paperclip and o
 ### D8. Maintainer outreach follows working tools
 
 Maintainer demand is treated as present. Structured outreach to identify pilot maintainers resumes once the coordinator, App, and connector work well for their purpose.
+
+## 2026-11-01 — License and training policy
+
+### D9. ChooseTheFuture is noncommercial, with gated commercial AI training
+
+The repository is licensed like PublicSewing: PolyForm Noncommercial 1.0.0 for source code ([`LICENSE`](../LICENSE)) and CC BY-NC 4.0 for everything else ([`LICENSE-CONTENT`](../LICENSE-CONTENT)), copyright David Borowski II. It is source-available, not OSI open source. The license texts are unmodified. [`AI-TRAINING.md`](../AI-TRAINING.md) is a clarification and policy document, not added license terms:
+
+- Noncommercial AI training is already permitted by the licenses.
+- Commercial AI training is not licensed, and requires express prior written permission, requested by issue with the same disclosures Dicklesworthstone asks for: organisation, account/provider setup, local or hosted processing, training/retention/sharing settings, and purpose.
+- AI-assisted development with provider-side training off is welcome through the ChooseTheFuture Connector only, because the connector enforces that setting. AI-assisted development outside the connector requires written permission, requested by issue with the same disclosures. Unlike the OpenAI/Anthropic rider used by Dicklesworthstone's repositories, provider processing through the connector is not otherwise restricted.
+
+### D10. The connector enforces each project's training policy locally
+
+Participating projects can declare a training policy. Before running a task, the ChooseTheFuture Connector checks the contributor's provider settings on their machine against that policy, and declines the task if it finds a conflict or cannot confirm the settings. Policy checks happen locally; the coordinator does not receive the contributor's provider account details.
+
+- **To validate:** which provider settings can actually be verified. API terms that exclude content from training, and local models, are checkable from configuration; consumer-subscription training toggles may not be visible to the connector, in which case the connector must decline or rely on an explicit contributor attestation, a choice still to be made.
+- The policy vocabulary, at least "no commercial training without permission" and "no training", is still to be defined, along with where projects declare it.
+
+### D11. Permission for the maintainer's own AI-assisted development
+
+Until the connector exists, David Borowski II grants written permission under [`AI-TRAINING.md`](../AI-TRAINING.md) for AI-assisted development on this repository in Claude Code sessions he runs, with provider-side training on the account confirmed off (2026-11-01). This permission covers only those sessions; anyone else still needs the connector or their own written permission.

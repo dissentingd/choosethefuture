@@ -32,6 +32,7 @@ Read [`docs/DECISIONS.md`](docs/DECISIONS.md) first; it is the authoritative rec
 - Treat submission patches from connectors as untrusted input; the coordinator gates them before publishing under the ChooseTheFuture name.
 - Use least-privilege project access. The App should not need write access to upstream repository contents; never merge automatically.
 - Make connector enrollment, project allowlists, activity, pause, and revocation understandable to users.
+- This repository is noncommercial (see [`AI-TRAINING.md`](AI-TRAINING.md)). AI-assisted development on it is permitted through the ChooseTheFuture Connector, or outside it only with written permission from the copyright holder. Connector features must enforce each project's declared training policy locally before running a task.
 
 ## Current repository
 

@@ -29,4 +29,16 @@ This is an early project. The repository currently contains a concept landing pa
 
 The static site lives in [`site/`](site/). GitHub Actions deploys that folder to GitHub Pages when changes are pushed to `main`. The task coordinator, if built, will be a separate service rather than part of the static Pages site.
 
-See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for system boundaries, [`docs/PROVIDER-COMPATIBILITY.md`](docs/PROVIDER-COMPATIBILITY.md) for the OpenHands/Paperclip assessment, and [`AGENTS.md`](AGENTS.md) for repository guidance for coding agents and parallel work.
+See [`docs/DECISIONS.md`](docs/DECISIONS.md) for settled decisions, [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for system boundaries, [`docs/PROVIDER-COMPATIBILITY.md`](docs/PROVIDER-COMPATIBILITY.md) for the OpenHands/Paperclip assessment, and [`AGENTS.md`](AGENTS.md) for repository guidance for coding agents and parallel work.
+
+## License
+
+ChooseTheFuture is free for any noncommercial use. It is source-available, not OSI open source.
+
+Copyright © 2026 David Borowski II.
+
+- **Source code** (HTML, CSS and JavaScript files, build, deployment and test configuration): [PolyForm Noncommercial 1.0.0](LICENSE).
+- **Everything else** (documentation, plans, decision records, project data and site copy): [Creative Commons Attribution-NonCommercial 4.0](LICENSE-CONTENT).
+- **AI training and AI-assisted development:** [`AI-TRAINING.md`](AI-TRAINING.md) explains how the licenses apply; it doesn't change them. Noncommercial training is already permitted. Commercial training isn't licensed and needs prior written permission, requested by opening an issue. AI-assisted development with provider-side training off is welcome through the ChooseTheFuture Connector only, which enforces that setting; AI-assisted development outside the connector needs written permission.
+
+Other commercial use needs permission too. Open an issue to ask.
