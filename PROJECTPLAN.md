@@ -1,6 +1,6 @@
 # ChooseTheFuture Project Plan
 
-This is the product and delivery roadmap. [`SITEPLAN.md`](SITEPLAN.md) describes the site experience and its information architecture. [`docs/PROVIDER-COMPATIBILITY.md`](docs/PROVIDER-COMPATIBILITY.md) records the current OpenHands/Paperclip integration assessment.
+This is the product and delivery roadmap. [`SITEPLAN.md`](SITEPLAN.md) describes the site experience and its information architecture. [`docs/PROVIDER-COMPATIBILITY.md`](docs/PROVIDER-COMPATIBILITY.md) records the current OpenHands/Paperclip integration assessment. [`docs/DECISIONS.md`](docs/DECISIONS.md) is the authoritative record of settled decisions.
 
 ## Project objective
 
@@ -16,7 +16,8 @@ GitHub remains the source of project issues and pull requests where maintainers 
 - **The coordinator stays provider-neutral.** ChooseTheFuture manages cross-user task eligibility and leases, but does not dictate the project’s agent-management platform or host agent execution.
 - **Projects retain authority.** Maintainers enroll projects, approve tasks for agent work, and review/accept submissions.
 - **Coordination is a ChooseTheFuture responsibility.** A service tracks eligibility, issues atomic task claims, expires abandoned claims, and records submission status. OpenHands is an execution runtime, not the task marketplace or queue owner.
-- **Interoperability is a product requirement.** The ChooseTheFuture Connector is client-neutral in identity. OpenHands and Paperclip are the planned first integrations; MCP and adapters can support others over time.
+- **Interoperability is a product requirement.** The ChooseTheFuture Connector is client-neutral in identity. OpenHands is the pilot integration; Paperclip, MCP, and other adapters can follow.
+- **ChooseTheFuture is accountable for what it submits.** Pull requests are opened by the ChooseTheFuture GitHub App, gated before publication, and followed up by a ChooseTheFuture agent during review.
 - **Measure separate outcomes separately.** Interest, task claims, submitted work, and accepted contributions are different signals.
 
 ## Milestone 0 — Define the pilot contract
@@ -30,10 +31,11 @@ GitHub remains the source of project issues and pull requests where maintainers 
 - Define a repository-readiness checklist: whether agent-assisted work is welcome and where; the canonical contribution guide and agent-readable instructions; verified setup and check commands with prerequisites; and the expected review process and submission evidence.
 - Require each published task to state its outcome, scope and exclusions, completion criteria, coordination expectations, and maintainer review availability. Check the source issue and repository for existing PRs or active work before making a task eligible.
 - Define how projects disclose or attribute agent assistance, and how maintainers pause contributions or mark guidance and tasks stale.
-- Have each pilot maintainer choose a workflow integration, initially comparing OpenHands and Paperclip.
+- Pilot with OpenHands as the single workflow integration; defer Paperclip until the OpenHands path works end to end.
+- Validate the GitHub App submission path: minimum permissions, and opening an upstream pull request from a branch on a ChooseTheFuture-owned fork.
 - Define how users choose approved projects, configure model access, set run limits, pause, and revoke connector access.
 - Decide and disclose, per integration, where agents run and whether model access belongs to the user, maintainer, or another explicitly configured provider.
-- Define a submission path, such as a pull request or patch submission, that leaves review and merge decisions to maintainers.
+- Define the pre-submission gate, per-repository pull-request pacing, pull-request disclosure text, and how the review-response agent escalates to a person.
 - Specify what task and run metadata the coordinator stores; keep model credentials and workspaces outside the coordinator.
 - Validate the Windows and macOS installation and execution options, including the sandbox boundary and runtime update strategy.
 
@@ -79,31 +81,33 @@ Nontechnical visitors can understand what projects do and what support means. Ma
 ### Coordinator service
 
 - Host the coordination API and database separately from the static GitHub Pages site as needed.
-- Ingest or retrieve maintainer-approved task eligibility and project-selected provider settings from supported integrations.
+- Run as the ChooseTheFuture GitHub App's backend; ingest maintainer-approved task eligibility from App webhooks.
 - Provide task discovery filtered by the user’s project allowlist.
 - Atomically issue temporary task leases; expire or release claims after failure, cancellation, or timeout.
+- Accept submission patches, run the pre-submission gate, push to a ChooseTheFuture fork, and open pull requests as the App.
 - Track task, provider-run status, and submission links without storing model credentials or full workspaces.
 - Apply per-project and global safety limits and provide maintainer pause controls.
+- Route review comments on ChooseTheFuture pull requests to a review-response agent.
 
 ### ChooseTheFuture Connector
 
-- Provide a user-facing connector that routes each task to the workflow integration selected by that project's maintainer.
+- Provide a user-facing connector that routes each leased task through the OpenHands adapter.
 - Keep model credentials out of the ChooseTheFuture coordinator; their location and use are explicit for each provider mode.
 - Let users select approved projects and set visible concurrency, usage, and pause/revoke controls.
-- Claim eligible tasks, prepare or request a separate workspace per task through the provider, and submit results automatically for maintainer review.
+- Claim eligible tasks, prepare or request a separate workspace per task through the provider, and return a submission patch, run summary, and check results to the coordinator. Never hold GitHub write credentials.
 - Return clear run summaries and submission links; do not merge automatically or require users to manually review each result.
 - Keep the connector identity provider-neutral and expose task operations through a stable API/MCP interface plus provider adapters.
 
 ### Deliverables
 
-- Hosted coordinator prototype with atomic leases and expiry.
-- Connector proof of concept with OpenHands and Paperclip adapters, validated with pilot maintainers who select their preferred integration.
-- Submission path and maintainer review feedback.
+- Hosted coordinator prototype with atomic leases and expiry, running as the ChooseTheFuture GitHub App.
+- Connector proof of concept with the OpenHands adapter.
+- App-opened pull requests through the pre-submission gate, with maintainer review feedback.
 - Documented threat boundaries and data handling.
 
 ### Exit check
 
-Two connector instances cannot claim the same task at once. A user can opt into projects using different workflow integrations, receive an eligible task through the connector, and have the result submitted for maintainer review. Execution and credential placement are visible and credentials are not sent to the ChooseTheFuture coordinator.
+Two connector instances cannot claim the same task at once. A user can opt into a project, receive an eligible task through the connector, and have the result opened as a ChooseTheFuture App pull request for maintainer review. Execution and credential placement are visible; model credentials are not sent to the coordinator, and GitHub App credentials are not sent to the connector.
 
 ## Milestone 3 — Make installation and interoperability practical
 
@@ -154,10 +158,11 @@ Do not optimize for raw vote totals, task volume, or pull-request volume alone.
 ## Dependencies and decisions
 
 - Which identity and authorization flow supports both public browsing and explicit connector project allowlists?
-- How will maintainers enroll repositories and approve tasks without extensive setup?
+- What eligibility signal (label, issue template, or both) should maintainers use, and how do they pause?
 - Which separate hosting and database services should operate the coordinator?
-- What GitHub integration should enroll issues and receive submissions while preserving maintainer control?
-- Which provider modes should be supported first: user-local, maintainer-hosted, or both? Whose model access does each mode use?
+- What is the ChooseTheFuture App's minimum permission set, and does the fork-based pull-request path work across installations?
+- Which OpenHands mode should the pilot use: contributor-local Agent Server, maintainer-hosted, or OpenHands Cloud? Whose model access does it use?
+- Should contributors be optionally credited on pull requests?
 - Which Windows/macOS connector/provider packaging and isolation approach can meet low-friction installation goals?
 - How will provider-specific task IDs and statuses map to one ChooseTheFuture task lease?
 - What MCP tools and client adapters are needed for useful cross-client task execution?
@@ -169,6 +174,8 @@ Do not optimize for raw vote totals, task volume, or pull-request volume alone.
 | Risk | Response |
 |---|---|
 | Votes are mistaken for a binding roadmap or agent enrollment | Explain that support, maintainer task approval, and connector enrollment are separate actions. |
+| Low-quality submissions damage the ChooseTheFuture name, since it authors every pull request | Pre-submission gate, low per-repository pacing, and a review-response agent that follows up or withdraws work. |
+| Connector compromise publishes malicious changes under the ChooseTheFuture identity | Connectors never hold GitHub credentials; the coordinator treats patches as untrusted and gates them. |
 | Multiple connectors start the same or stale task | Use coordinator-owned atomic claims with expiry, plus maintainer-controlled eligibility. |
 | Provider integrations have different execution and credential models | Make provider mode explicit per project, document its data flow, and validate each mode before broad release. |
 | Agent execution exposes unrelated files or credentials | Use per-task workspaces and a clear provider-specific sandbox boundary; never send model credentials to the coordinator. |
@@ -179,4 +186,4 @@ Do not optimize for raw vote totals, task volume, or pull-request volume alone.
 
 ## Current state
 
-The repository has a concept landing page, GitHub Pages deployment, README, product/site plans, and an architecture map. The project directory, voting, maintainer task enrollment, coordinator service, and connector are not implemented. The agreed direction is a provider-neutral ChooseTheFuture Connector that routes each project’s work through the integration selected by its maintainer; OpenHands and Paperclip are the planned first integrations. The coordinator manages task eligibility and temporary claims and may be hosted separately from GitHub Pages. Provider execution/credential modes, Windows/macOS installation, sandboxing, and MCP/client interoperability remain to be validated.
+The repository has a concept landing page, GitHub Pages deployment, README, product/site plans, and an architecture map. The project directory, voting, maintainer task enrollment, coordinator service, and connector are not implemented. The agreed direction (see [`docs/DECISIONS.md`](docs/DECISIONS.md)) is a provider-neutral ChooseTheFuture Connector piloted with OpenHands, and a coordinator that runs as the ChooseTheFuture GitHub App: maintainers opt in by installing it, it issues leases, and it opens every pull request under the ChooseTheFuture name. Maintainer outreach resumes once these tools work. The OpenHands execution/credential mode, the App's fork-based pull-request path, Windows/macOS installation, sandboxing, and MCP/client interoperability remain to be validated.

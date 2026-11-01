@@ -9,7 +9,7 @@ The site connects two groups:
 - **Supporters** who care about what gets built, even if they do not code.
 - **Agent contributors** who choose projects for the ChooseTheFuture Connector and contribute agent capacity through the project’s selected provider.
 
-ChooseTheFuture combines a public project directory with a task-coordination service and a user-facing connector. Maintainers choose a supported workflow integration for each project, such as OpenHands or Paperclip; the connector routes work through that integration. Users opt into projects and contribute agent capacity. Where agents run and whose model access they use depends on the selected integration and must be explicit. ChooseTheFuture does not host agent runs or pool credentials. Maintainers decide which tasks are eligible and review submitted contributions.
+ChooseTheFuture combines a public project directory with a task-coordination service and a user-facing connector. Maintainers opt in by installing the ChooseTheFuture GitHub App and marking eligible issues; the connector runs work through an agent integration (OpenHands for the pilot). Users opt into projects and contribute agent capacity. Where agents run and whose model access they use must be explicit. ChooseTheFuture does not host agent runs or pool model credentials. Every pull request is opened by the ChooseTheFuture App, which is accountable for it. Maintainers decide which tasks are eligible and review submitted contributions. Settled decisions are in [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
 ## 2. Product goals
 
@@ -52,8 +52,8 @@ Wants interested people to find the project, but needs contributions to fit proj
 Primary navigation:
 
 - **Explore projects** — the public directory and filters.
-- **How it works** — explains choosing, opting in agent capacity, and maintainer review in plain language.
-- **For project maintainers** — explains how to add a project and keep its guidance current.
+- **How it works** — explains choosing, opting in agent capacity, and maintainer review in plain language, including the trust model: who opens pull requests, where agents run, whose model usage is spent, what the coordinator sees, and how to stop it.
+- **For project maintainers** — explains opting in by installing the App, marking eligible issues, pausing or leaving, how pull requests are disclosed and paced, and how review feedback is answered.
 - **Connector** — explains installation, project selection, model access, and contribution controls.
 - **About** — the purpose, boundaries, and principles of ChooseTheFuture.
 
@@ -83,9 +83,9 @@ Core pages:
 1. Install the ChooseTheFuture Connector.
 2. Explicitly choose which enrolled projects it may serve and configure any access required by each project’s selected integration.
 3. The coordinator offers eligible tasks from those projects; the connector claims a task with a temporary lease to prevent duplicate assignments.
-4. The connector runs the agent in a separate task workspace and automatically submits the result, for example as a pull request, for maintainer review.
+4. The connector runs the agent in a separate task workspace and returns the change to the coordinator, which checks it and opens a pull request as the ChooseTheFuture App for maintainer review.
 5. The user can monitor activity, change limits, pause the connector, or revoke project access. They contribute agent capacity rather than manually driving each task.
-6. The connector routes each project’s tasks through its maintainer-selected integration, such as OpenHands or Paperclip. Alternative clients can connect through MCP or a supported adapter where available.
+6. The pilot connector runs tasks through OpenHands. Other integrations, and alternative clients through MCP or a supported adapter, may follow.
 
 ### C. Add or maintain a project
 
@@ -241,7 +241,7 @@ The experience should feel welcoming, hopeful, and credible—not like a develop
 - Lightweight supporter identity and changeable project/goal votes.
 - Goal and task pages with maintainer-controlled eligibility.
 - Coordinator service for task discovery, atomic claims, lease expiry, and submission status. Host separately from the static GitHub Pages site as needed.
-- Connector prototype with project-selected OpenHands and Paperclip integrations; make each integration’s execution and credential model explicit and submit results for maintainer review.
+- Connector prototype with the OpenHands integration; make its execution and credential model explicit. The coordinator opens pull requests as the ChooseTheFuture App for maintainer review.
 - Basic abuse controls and moderation queue.
 
 ### Phase 3: Connector usability and client interoperability

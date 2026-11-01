@@ -89,8 +89,9 @@ If a project wants Paperclip's board and agent management while requiring OpenHa
 ## Recommended first implementation boundary
 
 - Keep ChooseTheFuture's task eligibility and cross-user lease authoritative.
-- Implement an OpenHands adapter for direct task-to-agent execution.
-- Implement a Paperclip adapter for maintainers who choose Paperclip as their workflow control plane.
+- Implement an OpenHands adapter for direct task-to-agent execution. **Decided 2026-11-01:** this is the only adapter for the pilot (see [`DECISIONS.md`](DECISIONS.md) D7).
+- Later, implement a Paperclip adapter for maintainers who choose Paperclip as their workflow control plane.
+- Adapters return a submission patch to the coordinator; the coordinator opens the pull request as the ChooseTheFuture App (D1, D3). The "Submission" row above describes provider capability, not who publishes.
 - Do not require Paperclip to use OpenHands, and do not require OpenHands users to install Paperclip.
 - Keep the shared task/status/submission contract provider-neutral. Model provider-specific capabilities and execution/credential mode explicitly.
 - Do not mirror the entire Paperclip project board into ChooseTheFuture. Store only the external IDs and statuses required to reconcile one leased task and its submission.

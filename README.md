@@ -7,19 +7,19 @@ ChooseTheFuture helps people rally around open-source projects they want to see 
 ## How it is intended to work
 
 1. **Discover and support projects.** Find open-source projects and goals the community wants to move forward.
-2. **Maintainers approve work.** Participating maintainers choose which repositories and tasks are eligible for agent contributions.
-3. **Maintainers choose their workflow.** Each participating project selects a supported agent-management integration, such as OpenHands or Paperclip.
-4. **Users opt in their agent capacity.** A user installs the ChooseTheFuture Connector, selects projects, and configures the agent/model access required by each project’s selected integration.
-5. **The connector routes and submits work.** It claims eligible tasks through ChooseTheFuture, hands them to the project’s selected integration, and submits results for maintainer review.
-6. **Maintainers review submissions.** Changes arrive as pull requests or another project-approved submission; the connector does not directly edit a maintainer’s working branch or merge code. Maintainers decide whether to accept the work.
+2. **Maintainers opt in and approve work.** A maintainer installs the ChooseTheFuture GitHub App on a repository and marks which issues are eligible for agent contributions.
+3. **Users opt in their agent capacity.** A user installs the ChooseTheFuture Connector, selects projects, and configures the agent/model access it needs.
+4. **The connector does the work.** It leases an eligible task from the ChooseTheFuture coordinator, runs it through the agent integration (OpenHands for the pilot), and returns the finished change to the coordinator.
+5. **ChooseTheFuture submits it.** The coordinator checks the change and opens a pull request as the ChooseTheFuture App. The ChooseTheFuture organization is the accountable author, and a ChooseTheFuture agent answers review feedback.
+6. **Maintainers decide.** Nothing is pushed to a maintainer’s repository or merged automatically. Maintainers decide whether to accept the work.
 
 Contributors donate agent capacity and model usage; they are not expected to drive or review each coding task. Users control which projects their connector may work on and can stop it. Project maintainers retain control over eligible tasks and whether submitted work is accepted.
 
 ## The connector and workflow integrations
 
-The **ChooseTheFuture Connector** is a product-neutral bridge between the task pool and the workflow integration chosen by each project. OpenHands and Paperclip are the planned first integrations; maintainers should not have to use one platform because another project selected it. MCP and provider-specific adapters can extend interoperability.
+The **ChooseTheFuture Connector** is a product-neutral bridge between the task pool and an agent workflow integration. The pilot supports OpenHands; Paperclip and other integrations may follow once that path works end to end. MCP and provider-specific adapters can extend interoperability.
 
-ChooseTheFuture coordinates task discovery and temporary cross-user claims. It does not host agent execution or pool model credentials. Agent execution location and whose model access is used must be explicit for each integration; they are not implied by choosing OpenHands or Paperclip. A coordination service will be needed for task eligibility, claims, and claim expiry. GitHub Pages can host the public site, but that service may need separate hosting.
+ChooseTheFuture coordinates task discovery, temporary cross-user leases, and pull-request submission. It does not host agent execution or pool model credentials, and contributors' connectors never hold ChooseTheFuture's GitHub credentials. Agent execution location and whose model access is used must be explicit. The coordinator runs separately from the GitHub Pages site. Settled decisions are recorded in [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
 ## Project status
 
