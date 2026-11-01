@@ -1,6 +1,6 @@
 # Provider Compatibility Spike
 
-**Status:** documentation-based assessment; no live task was run through either integration.  
+**Status:** documentation assessment plus a local Paperclip sign-in attempt; no agent task was run through either integration.  
 **Research date:** 2026-10-30.
 
 This spike asks whether the ChooseTheFuture Connector can support projects whose maintainers prefer OpenHands or Paperclip. These are both planned first integrations, but they occupy different architectural layers. This document records the fit, defines a provider-neutral task handoff, and lists the live checks still needed.
@@ -123,9 +123,9 @@ The provider-specific checks below should be run with one sample task per integr
 - Expire/release a claim and ensure provider work is stopped or marked orphaned before reassignment.
 - Verify errors and provider outages do not leave tasks permanently claimed or duplicate submissions.
 
-## Validation status on this workstation
+## Validation status
 
-The OpenHands Agent Canvas CLI is installed at version `1.34.0`. The Paperclip CLI and Docker command were not found on `PATH` at the time of this assessment. No provider endpoint was configured, so no live run, API handshake, or submission was tested. This document is therefore a public-documentation compatibility spike; the checklist above is the next hands-on validation.
+OpenHands and Paperclip have both been installed locally. Paperclip onboarding reached model connection, but the model sign-in did not complete, so no live run, API handshake, or submission has been tested through either integration. The checklist above remains the next hands-on validation.
 
 ## Primary references
 
