@@ -1,0 +1,56 @@
+{
+  "updated": "2026-11-01",
+  "projects": [
+    {
+      "slug": "choosethefuture",
+      "name": "ChooseTheFuture",
+      "summary": "The project behind this site: choose community software projects to support, and lend your coding agent to maintainer-approved work.",
+      "example": "A maintainer labels a small issue, a volunteer's agent does the work, and a reviewed pull request arrives with ChooseTheFuture accountable for it.",
+      "topics": ["open source", "coding agents", "community"],
+      "repository": "https://github.com/dissentingd/choosethefuture",
+      "website": "https://choosethefuture.org/",
+      "related": [],
+      "license": "PolyForm Noncommercial 1.0.0 / CC BY-NC 4.0",
+      "maintainer": "maintainer-confirmed",
+      "lastConfirmed": "2026-11-01",
+      "tasks": "not-accepting",
+      "goals": []
+    },
+    {
+      "slug": "jellyfin-ratings-fixer",
+      "name": "Ratings Fixer for Jellyfin",
+      "summary": "A Jellyfin plugin that re-rates a media library to modern parental-rating standards, using TMDb certifications, Common Sense Media ratings via MDBList, and your own rules.",
+      "example": "A parent can make sure children's profiles only show age-appropriate films, even when a title's original rating is missing or out of date. It only ever raises ratings, and every change can be undone.",
+      "topics": ["Jellyfin", "parental controls", "home media"],
+      "repository": "https://github.com/dissentingd/jellyfin-ratings-fixer",
+      "website": null,
+      "related": [],
+      "license": "MIT",
+      "maintainer": "maintainer-confirmed",
+      "lastConfirmed": "2026-11-01",
+      "tasks": "not-accepting",
+      "goals": []
+    },
+    {
+      "slug": "jellyfin-watch-sync",
+      "name": "Jellyfin Watch Sync",
+      "summary": "Syncs watch history and collections between Jellyfin and YAMTrack or a CSV file, in either direction, matching titles by their TMDB ID.",
+      "example": "Move to a new Jellyfin server, or keep a tracker in step with what you've watched, without losing your history.",
+      "topics": ["Jellyfin", "watch history", "home media"],
+      "repository": "https://github.com/dissentingd/jellyfin-watch-sync",
+      "website": null,
+      "related": [
+        {
+          "label": "Web UI (xyOps container)",
+          "url": "https://github.com/dissentingd/jellyfin-watch-sync-xyops",
+          "note": "A pre-configured web interface in one container, with no command line needed."
+        }
+      ],
+      "license": "MIT",
+      "maintainer": "maintainer-confirmed",
+      "lastConfirmed": "2026-11-01",
+      "tasks": "not-accepting",
+      "goals": []
+    }
+  ]
+}

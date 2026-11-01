@@ -74,6 +74,20 @@ footer nav { gap: 18px; font-size: 12px; }
 .card p, .card li { margin: 0; color: var(--muted); font-size: 14px; }
 .card ul { margin: 0; padding-left: 18px; }
 .card li + li { margin-top: 5px; }
+.project h3 a { text-decoration: none; }
+.project h3 a:hover { color: var(--green); text-decoration: underline; }
+.project p + p { margin-top: 10px; }
+.project .example { padding-left: 12px; border-left: 2px solid var(--lime); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
+.chips li { padding: 3px 10px; border-radius: 999px; background: var(--soft); color: var(--green); font-size: 12px; font-weight: 600; }
+.card .chips { padding: 0; }
+.card .chips li + li { margin-top: 0; }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; }
+.facts dt { color: #6c7b73; }
+.facts dd { margin: 0; }
+.project-links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 14px !important; font-size: 14px; font-weight: 650; color: var(--green); }
+.project .related { font-size: 13px; }
+.project .related a { color: var(--green); font-weight: 650; }
 .card .tbd { display: inline-block; margin-top: 10px; color: #7b6a2e; font-size: 12px; font-weight: 650; }
 
 @media (max-width: 720px) {
