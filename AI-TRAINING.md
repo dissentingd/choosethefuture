@@ -12,7 +12,7 @@ Both licenses permit noncommercial use, and that includes training, fine-tuning,
 
 Neither license grants commercial use. Training, fine-tuning, distilling, or evaluating a model on this repository, or including it in a dataset or training corpus, by, for, or on behalf of a commercial organisation or a commercially offered product or service, is commercial use. That includes an AI provider training on material users send to its services.
 
-Commercial training therefore needs express prior written permission from David Borowski II. To ask, open an issue in this repository titled **"AI training permission request"** and state:
+Commercial training therefore needs express prior written permission from David Borowski II. To ask, open an [AI training permission request](https://github.com/dissentingd/choosethefuture/issues/new?template=ai-training-permission.yml) and state:
 
 1. The organisation and the people acting on its behalf.
 2. The account and provider setup that will process the material.
@@ -26,10 +26,10 @@ Permission exists only when granted in writing, and covers only the material, pu
 
 **Through the ChooseTheFuture Connector.** AI-assisted development with provider-side training off is welcome through the connector. During setup, the connector shows the contributor how to turn off provider-side training, requires them to read and accept the connector's terms of use, which require training to stay off, and requires them to acknowledge that training is off. It runs no tasks until they have. Projects that take part in ChooseTheFuture can declare their own training policy the same way.
 
-**Outside the connector.** Using AI coding tools or agents on this repository any other way needs prior written permission, because nothing else enforces that provider-side training is off. Ask by opening an issue titled **"AI-assisted development permission request"** with the same five disclosures listed above. As with training, permission exists only when granted in writing, and covers only what it names.
+**Outside the connector.** Using AI coding tools or agents on this repository any other way needs prior written permission, because nothing else enforces that provider-side training is off. Ask with an [AI-assisted development permission request](https://github.com/dissentingd/choosethefuture/issues/new?template=ai-development-permission.yml), which asks for the same five disclosures. As with training, permission exists only when granted in writing, and covers only what it names.
 
 Sending this material to a service that will train on it commercially would make it available for a use the licenses don't grant.
 
 ## Other commercial use
 
-Other commercial use of this repository is outside both licenses and also needs permission. Ask in the same way, by opening an issue.
+Other commercial use of this repository is outside both licenses and also needs permission. Ask with a [commercial use permission request](https://github.com/dissentingd/choosethefuture/issues/new?template=commercial-use-permission.yml).

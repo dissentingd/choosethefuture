@@ -1,0 +1,42 @@
+name: Report a listing or submission
+description: Report stale, incorrect, unsafe, or unwanted project information, or a problem with a ChooseTheFuture pull request.
+title: "Report: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Issues are public, so please don't include private details. For security problems, use the [security policy](https://github.com/dissentingd/choosethefuture/security/policy) instead. See the [reporting process](https://github.com/dissentingd/choosethefuture/blob/main/docs/REPORTING.md).
+  - type: input
+    id: project
+    attributes:
+      label: Project or page
+      description: The project's name or the address of the page.
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: What kind of problem is it?
+      options:
+        - Stale information
+        - Incorrect information
+        - Unwanted listing (I'm a maintainer and want it removed or changed)
+        - Unsafe or harmful guidance
+        - Unwanted or low-quality pull request
+        - Spam or abuse
+        - Possible breach of the AI training policy
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What's wrong?
+      description: Include links, and what you think it should say or do instead.
+    validations:
+      required: true
+  - type: input
+    id: maintainer-proof
+    attributes:
+      label: If you're a maintainer, how can we confirm that? (optional)
+      description: For example, a link to your commit history or the project's maintainers file.

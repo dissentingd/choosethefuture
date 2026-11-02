@@ -23,7 +23,7 @@ ChooseTheFuture coordinates task discovery, temporary cross-user leases, and pul
 
 ## Project status
 
-This is an early project. The repository currently contains a concept landing page, a GitHub Pages deployment workflow, and product/site plans. The project directory, voting, maintainer tools, coordinator service, and connector are not implemented yet. Windows/macOS installation, provider integrations, execution/credential modes, and safe execution boundaries need design and validation.
+This is an early project. The repository contains the public site, including a small project directory, plus the plans and policies. Voting, maintainer tools, the coordinator, and the connector are not implemented yet. The coordinator and connector will live in their own repositories. Windows/macOS installation, provider integrations, execution/credential modes, and safe execution boundaries need design and validation.
 
 ## Development
 
@@ -31,14 +31,18 @@ The static site lives in [`site/`](site/). GitHub Actions deploys that folder to
 
 See [`docs/DECISIONS.md`](docs/DECISIONS.md) for settled decisions, [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for system boundaries, [`docs/PROVIDER-COMPATIBILITY.md`](docs/PROVIDER-COMPATIBILITY.md) for the OpenHands/Paperclip assessment, and [`AGENTS.md`](AGENTS.md) for repository guidance for coding agents and parallel work.
 
+To take part, see [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SECURITY.md`](SECURITY.md), the [maintainer checklist](docs/MAINTAINER-CHECKLIST.md), and the [reporting process](docs/REPORTING.md).
+
 ## License
 
 ChooseTheFuture is free for any noncommercial use. It is source-available, not OSI open source.
 
 Copyright © 2026 David Borowski II.
 
-- **Source code** (HTML, CSS and JavaScript files, build, deployment and test configuration): [PolyForm Noncommercial 1.0.0](LICENSE).
-- **Everything else** (documentation, plans, decision records, project data and site copy): [Creative Commons Attribution-NonCommercial 4.0](LICENSE-CONTENT).
+SPDX: `PolyForm-Noncommercial-1.0.0 AND CC-BY-NC-4.0`.
+
+- **Source code**, wherever it sits in the repository (HTML, CSS, JavaScript and Python files, and build, deployment, test and package configuration, including `.github/workflows`): [PolyForm Noncommercial 1.0.0](LICENSE).
+- **Everything else of ours** (documentation, plans, decision records, project data and site copy): [Creative Commons Attribution-NonCommercial 4.0](LICENSE-CONTENT).
 - **AI training and AI-assisted development:** [`AI-TRAINING.md`](AI-TRAINING.md) explains how the licenses apply; it doesn't change them. Noncommercial training is already permitted. Commercial training isn't licensed and needs prior written permission, requested by opening an issue. AI-assisted development with provider-side training off is welcome through the ChooseTheFuture Connector only, which enforces that setting; AI-assisted development outside the connector needs written permission.
 
 Other commercial use needs permission too. Open an issue to ask.

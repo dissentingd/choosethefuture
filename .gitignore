@@ -1,2 +1,4 @@
 LOCAL-NOTES.md
 .claude/
+*.pem
+__pycache__/

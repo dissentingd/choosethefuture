@@ -1,0 +1,46 @@
+name: AI-assisted development permission request
+description: Ask for written permission to use AI coding tools on this repository outside the ChooseTheFuture Connector.
+title: "AI-assisted development permission request: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        AI-assisted development on this repository outside the ChooseTheFuture Connector needs written permission. Issues are public. **Never post keys, passwords, or tokens.** Opening this issue doesn't grant permission: permission exists only when granted in writing, and covers only what it names. No reply is not permission. See [AI-TRAINING.md](https://github.com/dissentingd/choosethefuture/blob/main/AI-TRAINING.md).
+  - type: textarea
+    id: who
+    attributes:
+      label: Organisation and people
+      description: The organisation, if any, and the people acting on its behalf.
+    validations:
+      required: true
+  - type: textarea
+    id: provider
+    attributes:
+      label: Account and provider setup
+      description: Which providers, products, plans, and kind of account will process the material.
+    validations:
+      required: true
+  - type: dropdown
+    id: location
+    attributes:
+      label: Where processing runs
+      options:
+        - Locally
+        - In hosted environments
+        - Both
+    validations:
+      required: true
+  - type: textarea
+    id: settings
+    attributes:
+      label: Training, retention, and sharing settings
+      description: The training, data-retention, and transcript- or data-sharing settings that apply, and how you confirmed them.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Material and purpose
+      description: Which parts of the repository you'd work on, what you plan to do, and for how long.
+    validations:
+      required: true

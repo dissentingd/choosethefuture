@@ -14,7 +14,9 @@ Every pull request created through ChooseTheFuture is opened by an organization-
 
 ### D2. Review feedback is answered by ChooseTheFuture
 
-Maintainer review comments on a ChooseTheFuture pull request are answered by a ChooseTheFuture agent, escalating to the ChooseTheFuture organization as needed. Contributors are not expected to follow up on review. This is disclosed on each pull request and on the maintainer page.
+Maintainer review comments on a ChooseTheFuture pull request are answered by a ChooseTheFuture agent, escalating to the ChooseTheFuture organization as needed. The original contributor is not expected to follow up. This is disclosed on each pull request and on the maintainer page.
+
+Decided 2026-11-02: review feedback becomes a new leased task, and the next agent assigned by a connector answers it. ChooseTheFuture still runs no agents on its own infrastructure.
 
 ### D3. Connectors never hold GitHub write credentials
 
@@ -30,7 +32,7 @@ A project joins ChooseTheFuture when its maintainer installs the ChooseTheFuture
 
 - The App receives issue and label events through webhooks so the coordinator can ingest eligible tasks.
 - The App does not need write access to upstream repository contents: branches live on the ChooseTheFuture fork, and the upstream installation needs only the permissions required to read issues and open and update pull requests.
-- **To validate:** that an installation token on the upstream repository can open a pull request whose head branch lives on a ChooseTheFuture fork installed separately, and the exact minimum permission set.
+- **To validate:** that an installation token on the upstream repository can open a pull request whose head branch lives on a ChooseTheFuture fork installed separately, and the exact minimum permission set. An App has one permission set across installations, so this may need two Apps: one on upstream repositories that opens pull requests, and one on the organization that owns forks and pushes. [`spikes/github-app-pr`](../spikes/github-app-pr/README.md) tests this.
 
 ### D5. The coordinator is kept for the pilot and owns leases
 
@@ -41,7 +43,7 @@ The coordinator is part of the pilot, not deferred. It runs as the App's backend
 
 ### D6. Quality gate and pacing before any pull request opens
 
-Because every submission is published under the ChooseTheFuture name, the coordinator applies a gate before opening a pull request: the repository's own checks must be run and reported, the change must stay within the task's stated scope, and an automated review step may be added. Pull requests are rate-limited per repository and globally, starting low.
+Because every submission is published under the ChooseTheFuture name, the coordinator applies a gate before opening a pull request: the repository's own checks must run in GitHub Actions on the ChooseTheFuture fork (decided 2026-11-02), not on the coordinator and not self-reported by a connector, the change must stay within the task's stated scope, and an automated review step may be added. Pull requests are rate-limited per repository and globally, starting low.
 
 ### D7. Pilot with one integration: OpenHands
 
@@ -69,12 +71,28 @@ Participating projects can declare a training policy. Provider training toggles 
 2. It requires them to read the connector's terms of use, which oblige them to keep training off. The training-off requirement is part of those terms.
 3. It requires them to accept those terms and acknowledge that they have turned training off. The connector runs no tasks until they have.
 
-The acknowledgment is recorded locally and covers the model access the contributor connected; connecting different model access repeats the steps. The coordinator does not receive the contributor's provider account details.
+The acknowledgment covers the model access the contributor connected; connecting different model access repeats the steps. The coordinator records which terms version each connector accepted and when (decided 2026-11-02). It does not receive the contributor's provider account details.
 
-- **Still to write:** the connector's terms of use.
-- **Still to decide:** whether the connector also refuses configurations it can tell would allow training (for example, a provider's free tier), and how often acknowledgment is renewed.
+- The connector's terms of use will be written in the connector repository (D12).
+- **Still to decide, in that repository:** whether the connector also refuses configurations it can tell would allow training (for example, a provider's free tier), and how often acknowledgment is renewed.
 - The policy vocabulary, at least "no commercial training without permission" and "no training", is still to be defined, along with where projects declare it.
 
 ### D11. Permission for the maintainer's own AI-assisted development
 
-Until the connector exists, David Borowski II grants written permission under [`AI-TRAINING.md`](../AI-TRAINING.md) for AI-assisted development on this repository in Claude Code sessions he runs, with provider-side training on the account confirmed off (2026-11-01). This permission covers only those sessions; anyone else still needs the connector or their own written permission.
+Until the connector exists, David Borowski II grants written permission under [`AI-TRAINING.md`](../AI-TRAINING.md) for AI-assisted development on this repository in Claude Code sessions run by the copyright holder, with provider-side training on the account confirmed off (2026-11-01). This permission covers only those sessions; anyone else still needs the connector or their own written permission.
+
+## 2026-11-02 — Repository boundaries
+
+### D12. The connector is a separate, related repository
+
+The ChooseTheFuture Connector will live in its own repository and be listed as a related project. Its terms of use, and the detail of how it works, belong to that repository. This repository keeps the public site, the decision record, and the product-level requirements the connector must meet.
+
+The connector uses the same license as this project (D9).
+
+### D13. The coordinator runs on a hosted server, with its own repository
+
+The coordinator runs on a hosted server, separate from GitHub Pages, and its code lives in its own repository under the same license as this project. The hosting provider is not yet selected.
+
+### D14. A ChooseTheFuture GitHub organization owns the system
+
+A GitHub organization, named ChooseTheFuture or similar, will own the GitHub App, the forks pull requests are opened from, and the project's repositories. It does not exist yet. Whether a legal entity should stand behind it is not yet decided; copyright stays with David Borowski II until decided otherwise.

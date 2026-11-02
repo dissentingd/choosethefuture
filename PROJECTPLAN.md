@@ -87,7 +87,7 @@ Nontechnical visitors can understand what projects do and what support means. Ma
 - Accept submission patches, run the pre-submission gate, push to a ChooseTheFuture fork, and open pull requests as the App.
 - Track task, provider-run status, and submission links without storing model credentials or full workspaces.
 - Apply per-project and global safety limits and provide maintainer pause controls.
-- Route review comments on ChooseTheFuture pull requests to a review-response agent.
+- Turn review comments on ChooseTheFuture pull requests into new leased tasks for the next connector.
 
 ### ChooseTheFuture Connector
 
@@ -186,4 +186,4 @@ Do not optimize for raw vote totals, task volume, or pull-request volume alone.
 
 ## Current state
 
-The repository has a concept landing page, GitHub Pages deployment, README, product/site plans, and an architecture map. The project directory, voting, maintainer task enrollment, coordinator service, and connector are not implemented. The agreed direction (see [`docs/DECISIONS.md`](docs/DECISIONS.md)) is a provider-neutral ChooseTheFuture Connector piloted with OpenHands, and a coordinator that runs as the ChooseTheFuture GitHub App: maintainers opt in by installing it, it issues leases, and it opens every pull request under the ChooseTheFuture name. Maintainer outreach resumes once these tools work. The OpenHands execution/credential mode, the App's fork-based pull-request path, Windows/macOS installation, sandboxing, and MCP/client interoperability remain to be validated.
+The repository has the public site with a small project directory, GitHub Pages deployment, plans, policies, and an architecture map. Voting, maintainer task enrollment, the coordinator, and the connector are not implemented; the coordinator and connector will live in their own repositories. The agreed direction (see [`docs/DECISIONS.md`](docs/DECISIONS.md)) is a provider-neutral ChooseTheFuture Connector piloted with OpenHands, and a coordinator that runs as the ChooseTheFuture GitHub App: maintainers opt in by installing it, it issues leases, and it opens every pull request under the ChooseTheFuture name. Maintainer outreach resumes once these tools work. The OpenHands execution/credential mode, the App's fork-based pull-request path, Windows/macOS installation, sandboxing, and MCP/client interoperability remain to be validated.

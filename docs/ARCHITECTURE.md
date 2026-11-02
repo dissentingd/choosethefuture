@@ -47,9 +47,10 @@ The public site can remain static and deploy through GitHub Pages. The coordinat
 - Record which supported workflow integration each project uses and the non-secret connection metadata needed to route work.
 - Filter task discovery by projects a user has explicitly enabled in the connector.
 - Issue an atomic lease to one connector at a time using the coordinator's own database; GitHub issue assignment is not the lease authority. Expire/release leases after completion, failure, cancellation, or timeout. Lease state may be mirrored to GitHub for maintainer visibility.
-- Accept submission patches from connectors, run the pre-submission gate (repository checks reported, change within task scope, optional automated review), and enforce per-repository and global pull-request rate limits.
+- Accept submission patches from connectors, run the pre-submission gate (repository checks pass in GitHub Actions on the ChooseTheFuture fork, change within task scope, optional automated review), and enforce per-repository and global pull-request rate limits.
 - Push accepted patches to a branch on a ChooseTheFuture-owned fork and open the pull request against the upstream repository as the App. Hold the App's credentials; never send them to connectors.
-- Route maintainer review comments on ChooseTheFuture pull requests to a ChooseTheFuture agent for response, escalating to the organization as needed.
+- Turn maintainer review comments on ChooseTheFuture pull requests into new leased tasks, answered by the next agent a connector assigns, escalating to the organization as needed.
+- Record which connector terms version each connector accepted and when, without provider account details.
 - Track minimum handoff, run, and submission metadata needed for status, deduplication, and operations.
 - Never store model-provider credentials or agent workspaces. Submission patches are stored only as long as needed to open and update the pull request.
 
@@ -105,7 +106,7 @@ The coordinator should make transitions idempotent and recoverable. A disconnect
 - The App's minimum permission set, and validation that an upstream installation can open a pull request from a branch on a separately installed ChooseTheFuture fork.
 - The eligibility signal maintainers use (label name, issue template, or both) and how pause/withdrawal is expressed.
 - Pre-submission gate contents and initial per-repository/global rate limits.
-- How the review-response agent runs, and when it escalates to a person.
+- When review follow-up escalates to a person.
 - Whether contributors can optionally be credited on a pull request.
 - Whether OpenHands runs on the contributor's machine, on maintainer infrastructure, or through OpenHands Cloud for the pilot—and whose model access is used.
 - How the OpenHands adapter identifies its run and reconciles status with the lease.

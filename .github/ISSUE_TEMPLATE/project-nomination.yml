@@ -1,0 +1,64 @@
+name: Nominate a project
+description: Suggest a project for the ChooseTheFuture directory.
+title: "Project nomination: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Issues are public. A nomination is a suggestion: it doesn't enroll the project, and no agent work happens unless its maintainer opts in. See the [listing criteria](https://choosethefuture.org/nominate.html).
+  - type: input
+    id: project-name
+    attributes:
+      label: Project name
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Public repository URL
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: true
+  - type: dropdown
+    id: relationship
+    attributes:
+      label: Your relationship to the project
+      options:
+        - I'm a maintainer
+        - I'm a contributor
+        - I'm a user or supporter
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: What does it do?
+      description: One or two sentences in plain language, for someone who doesn't code.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why should people care?
+      description: Who does it help, and how?
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: As stated in the repository.
+    validations:
+      required: true
+  - type: textarea
+    id: goals
+    attributes:
+      label: Current goals (optional)
+      description: Link to the project's roadmap or issues if you can.
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Please confirm
+      options:
+        - label: I understand a listing doesn't commit the project or its maintainers to anything, and that maintainers can ask for removal at any time.
+          required: true

@@ -11,6 +11,7 @@ Read [`docs/DECISIONS.md`](docs/DECISIONS.md) first; it is the authoritative rec
 - Maintainers opt in by installing the App on a repository and marking issues eligible.
 - Every pull request is opened by the ChooseTheFuture App, not by contributors' accounts. The ChooseTheFuture organization is the accountable author, and a ChooseTheFuture agent answers review feedback. Users do not manually drive or approve every task after opting in; maintainers retain review and merge authority.
 - The connector returns a submission patch to the coordinator; the coordinator pushes to a ChooseTheFuture fork and opens the pull request. The connector never holds GitHub write credentials.
+- The connector will live in its own repository (see DECISIONS D12), including its terms of use and implementation detail. Keep only product-level requirements for it here.
 - The connector’s identity is ChooseTheFuture, not any provider. MCP and adapters should support alternative clients over time.
 - Do not centralize model credentials or run agent sessions on ChooseTheFuture infrastructure.
 - Docker is not a settled end-user requirement. Keep Windows/macOS setup low-friction and treat installer, runtime packaging, and task isolation as open implementation work.
