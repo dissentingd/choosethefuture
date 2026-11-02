@@ -1,41 +1,78 @@
 {
-  "updated": "2026-11-01",
+  "updated": "2026-11-02",
   "projects": [
     {
       "slug": "choosethefuture",
       "name": "ChooseTheFuture",
       "summary": "The project behind this site: choose community software projects to support, and lend your coding agent to maintainer-approved work.",
       "example": "A maintainer labels a small issue, a volunteer's agent does the work, and a reviewed pull request arrives with ChooseTheFuture accountable for it.",
-      "topics": ["open source", "coding agents", "community"],
+      "description": "ChooseTheFuture is a public directory, a task coordinator, and a connector. People choose which projects they want to see move forward. Maintainers decide which work is welcome. Contributors lend agent capacity to that work, and ChooseTheFuture submits the result for review.",
+      "whyItMatters": "Many people have coding agents with spare capacity, and many projects have small, well-described tasks nobody has time for. Connecting them only works if maintainers stay in charge and someone answers for what gets submitted.",
+      "topics": ["community software", "coding agents", "maintainer tools"],
       "repository": "https://github.com/dissentingd/choosethefuture",
       "website": "https://choosethefuture.org/",
       "related": [],
       "license": "PolyForm Noncommercial 1.0.0 / CC BY-NC 4.0",
       "maintainer": "maintainer-confirmed",
-      "lastConfirmed": "2026-11-01",
+      "lastConfirmed": "2026-11-02",
       "tasks": "not-accepting",
-      "goals": []
+      "goals": [
+        {
+          "title": "Prove pull requests can be opened safely",
+          "outcome": "The ChooseTheFuture GitHub App opens a pull request from its own fork, without write access to the upstream repository.",
+          "status": "active",
+          "source": "https://github.com/dissentingd/choosethefuture/blob/main/docs/DECISIONS.md"
+        },
+        {
+          "title": "Run a first task through OpenHands",
+          "outcome": "One real task runs end to end, produces a patch, and recovers after a restart.",
+          "status": "active",
+          "source": "https://github.com/dissentingd/choosethefuture/blob/main/docs/PROVIDER-COMPATIBILITY.md"
+        },
+        {
+          "title": "Open a small pilot",
+          "outcome": "A few projects receive reviewable pull requests through the whole system.",
+          "status": "proposed",
+          "source": "https://github.com/dissentingd/choosethefuture/blob/main/PROJECTPLAN.md"
+        }
+      ],
+      "guidance": {
+        "contributing": "https://github.com/dissentingd/choosethefuture/blob/main/CONTRIBUTING.md",
+        "agentPolicy": "AI-assisted development is welcome through the ChooseTheFuture Connector once it exists. Until then it needs written permission.",
+        "policyLink": "https://github.com/dissentingd/choosethefuture/blob/main/AI-TRAINING.md",
+        "exclusions": ["Changes to decisions in docs/DECISIONS.md without discussing them first", "Changes to the license texts"]
+      }
     },
     {
       "slug": "jellyfin-ratings-fixer",
       "name": "Ratings Fixer for Jellyfin",
-      "summary": "A Jellyfin plugin that re-rates a media library to modern parental-rating standards, using TMDb certifications, Common Sense Media ratings via MDBList, and your own rules.",
-      "example": "A parent can make sure children's profiles only show age-appropriate films, even when a title's original rating is missing or out of date. It only ever raises ratings, and every change can be undone.",
+      "summary": "A Jellyfin plugin that re-rates a media library to modern parental-rating standards, so Jellyfin's parental controls work on older and unrated titles.",
+      "example": "A parent can keep children's profiles to age-appropriate films, even when a title's original rating is missing or out of date. By default it only raises ratings, and it records every rating it writes.",
+      "description": "Ratings Fixer decides each title's rating from your own rules, current TMDb certifications, TVDb, and Common Sense Media ages via MDBList. It writes the result to Jellyfin's Custom Rating, which metadata refreshes leave alone, and keeps the official rating for reference. Titles it can't decide go on a review list instead of being guessed.",
+      "whyItMatters": "Parental controls are only as good as each title's rating. Films older than the rating system often carry labels like \"Approved\", which Jellyfin scores the same as G, and many titles in a typical library have no rating at all.",
       "topics": ["Jellyfin", "parental controls", "home media"],
       "repository": "https://github.com/dissentingd/jellyfin-ratings-fixer",
       "website": null,
       "related": [],
       "license": "MIT",
       "maintainer": "maintainer-confirmed",
-      "lastConfirmed": "2026-11-01",
+      "lastConfirmed": "2026-11-02",
       "tasks": "not-accepting",
-      "goals": []
+      "goals": [],
+      "guidance": {
+        "contributing": null,
+        "agentPolicy": "Not accepting agent tasks yet.",
+        "policyLink": null,
+        "exclusions": ["Changes that make the plugin loosen ratings by default", "Changes that write ratings without a record in the ledger"]
+      }
     },
     {
       "slug": "jellyfin-watch-sync",
       "name": "Jellyfin Watch Sync",
       "summary": "Syncs watch history and collections between Jellyfin and YAMTrack or a CSV file, in either direction, matching titles by their TMDB ID.",
-      "example": "Move to a new Jellyfin server, or keep a tracker in step with what you've watched, without losing your history.",
+      "example": "Reorganize your library or re-encode a film, and it stays marked as watched. You can also keep a tracker in step with what you've seen.",
+      "description": "Jellyfin ties watch history to a specific file, so moving, renaming, or upgrading that file can erase it. Watch Sync identifies each movie and episode by its permanent TMDB ID instead, reads history from wherever it's still intact, and writes it back. Every command shows what it would do and changes nothing until you add --apply.",
+      "whyItMatters": "Years of watch history can vanish after an ordinary library reorganization. Jellyfin has only partly addressed this, and many real-world reorganizations still lose history.",
       "topics": ["Jellyfin", "watch history", "home media"],
       "repository": "https://github.com/dissentingd/jellyfin-watch-sync",
       "website": null,
@@ -48,9 +85,28 @@
       ],
       "license": "MIT",
       "maintainer": "maintainer-confirmed",
-      "lastConfirmed": "2026-11-01",
+      "lastConfirmed": "2026-11-02",
       "tasks": "not-accepting",
-      "goals": []
+      "goals": [
+        {
+          "title": "Work with Jellyfin 12.0",
+          "outcome": "Requests include the authorization fields Jellyfin 12.0 requires.",
+          "status": "active",
+          "source": "https://github.com/dissentingd/jellyfin-watch-sync/issues/1"
+        },
+        {
+          "title": "Support more watch-history sources",
+          "outcome": "More trackers and export formats can be read, each added as one new file.",
+          "status": "proposed",
+          "source": "https://github.com/dissentingd/jellyfin-watch-sync/blob/main/CONTRIBUTING.md"
+        }
+      ],
+      "guidance": {
+        "contributing": "https://github.com/dissentingd/jellyfin-watch-sync/blob/main/CONTRIBUTING.md",
+        "agentPolicy": "Not accepting agent tasks yet.",
+        "policyLink": null,
+        "exclusions": ["Changes that write without an explicit --apply", "Changes that overwrite a newer watched date or delete data"]
+      }
     }
   ]
 }
