@@ -77,9 +77,13 @@ The acknowledgment covers the model access the contributor connected; connecting
 - **Still to decide, in that repository:** whether the connector also refuses configurations it can tell would allow training (for example, a provider's free tier), and how often acknowledgment is renewed.
 - The policy vocabulary, at least "no commercial training without permission" and "no training", is still to be defined, along with where projects declare it.
 
-### D11. Permission for the maintainer's own AI-assisted development
+### D11. Permission for AI-assisted development before the connector exists
 
-Until the connector exists, David Borowski II grants written permission under [`AI-TRAINING.md`](../AI-TRAINING.md) for AI-assisted development on this repository in Claude Code sessions run by the copyright holder, with provider-side training on the account confirmed off (2026-11-01). This permission covers only those sessions; anyone else still needs the connector or their own written permission.
+Until the connector exists, David Borowski II grants written permission under [`AI-TRAINING.md`](../AI-TRAINING.md) for AI-assisted development on this repository in Claude Code sessions run by the copyright holder, with provider-side training on the account confirmed off (2026-11-01).
+
+The same permission extends to Claude Code sessions run by collaborator Zuron007, with provider-side training on their account confirmed off (recorded 2026-11-21). It covers their earlier proposal pull request, [#1](https://github.com/dissentingd/choosethefuture/pull/1).
+
+This permission covers only those sessions; anyone else still needs the connector or their own written permission.
 
 ## 2026-11-02 — Repository boundaries
 
